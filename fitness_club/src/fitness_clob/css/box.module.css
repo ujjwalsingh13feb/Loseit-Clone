@@ -1,0 +1,44 @@
+.outerbox {
+  border: 1px solid black;
+  height: 30vw;
+}
+.innerbox {
+  border: 1px solid black;
+  width: 50%;
+  margin-left: 150px;
+  height: 100%;
+  display: flex;
+}
+.sidebar {
+  border: 1px solid black;
+  width: 178px;
+}
+.operations {
+  border: 1px solid black;
+  width:400px;
+  margin-left: 25px;
+}
+.active {
+  text-decoration: none;
+  color: red;
+}
+
+.default {
+  text-decoration: none;
+  color: black;
+}
+.sidebar > div a {
+  text-decoration: none;
+}
+.sidebar>div {
+  border: 1px solid black;
+  font-size: 11pt;
+  color: #2c475c;
+  padding: 5px 10px 5px 10px;
+}
+.flexbox{
+    border: 1px solid red;
+display: flex;
+justify-content: space-between;
+    width: 80px;
+}
