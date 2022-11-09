@@ -1,0 +1,106 @@
+.addfoodBody {
+  margin: auto;
+}
+.addfoodBody > div {
+  margin: auto;
+}
+.foodLog {
+  position: relative;
+}
+.foodLog > div:nth-child(1) {
+  background-color: #edeff2;
+  height: 26.5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+.foodLog > div:nth-child(1) > div > h1 {
+  font-size: 12px;
+  color: #2c475c;
+}
+.foodLog > div:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.foodLog > div:nth-child(1) > div:nth-child(2) > button {
+  background-color: white;
+  color: black;
+  padding: 4px;
+}
+.foodLog > div:nth-child(1) > div:nth-child(2) > input {
+  background-color: #fff;
+  color: black;
+  color-scheme: black;
+  padding-left: 10px;
+}
+.FoodScroll {
+  /* background-color: red; */
+  position: absolute;
+  top: 30px;
+  right:0px;
+  width: 400px;
+  max-width: 400px;
+  height: 305px;
+  z-index: 10;
+  margin: auto;
+  border: 1px solid white;
+  overflow-y:scroll;
+  background: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.FoodScroll > h1 {
+  color: black;
+  font-weight: bold;
+  background-color: #edeff2;
+  font-size: 12px;
+  text-align: left;
+  margin-left: 12px;
+  padding: 2px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.FoodScroll > div {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  margin: auto;
+  margin-left: 20px;
+  text-align: left;
+  color: black;
+  margin-top: 10px;
+}
+.FoodScroll > div:hover {
+  background-color: #0b6cc4;
+}
+.FoodScroll >div > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.FoodScroll > div > div > img {
+  width: 30px;
+}
+.FoodScroll > div > div > button {
+  margin: auto;
+  margin-left: 20px;
+  font-size: 12px;
+  position: sticky;
+  bottom: 0;
+  height: 16px;
+}
+.AddFoodInTab{
+    position: sticky;
+    top: 0px;
+    z-index: 30;
+}
+.foodLogDisplay {
+  color: #0b6cc4;
+  font-weight: bold;
+}
