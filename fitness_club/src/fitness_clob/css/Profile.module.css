@@ -1,0 +1,120 @@
+.flex {
+  display: flex;
+  /* border:1px solid black; */
+  height: 50vw;
+}
+.innerdiv {
+  /* border: 1px solid black; */
+  width: 75%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+}
+.userdata {
+  /* border: 1px solid red; */
+  width: 18%;
+}
+.usertodo {
+  /* border: 1px solid black; */
+  width: 40%;
+}
+.usercal {
+  /* border: 1px solid blue; */
+  width: 40%;
+}
+.community {
+  color: #0f6cc4;
+  font-weight: bold;
+  font-size: 9pt;
+}
+.name {
+  color: black;
+  font-weight: bold;
+  font-size: 9pt;
+  margin-left: 3px;
+}
+.data {
+  color: black;
+  font-weight: bold;
+  font-size: 9pt;
+}
+.member {
+  color: black;
+  font-size: 8pt;
+  margin-bottom: 2px;
+}
+.kg {
+  color: rgba(255, 0, 0, 0.86);
+  font-weight: bold;
+  font-size: 9pt;
+}
+.cals {
+  color: green;
+  font-weight: bold;
+  font-size: 9pt;
+}
+.calschild {
+  font-size: 8pt;
+  font-weight: bold;
+  padding-right: 3px;
+  color: black;
+}
+.calssecondchild {
+  font-size: 8pt;
+  color: #81888e;
+}
+.logeed1 {
+  color: black;
+  font-weight: normal;
+  font-size: 9pt;
+}
+.logeed2 {
+  font-size: 8pt;
+  font-weight: bold;
+  padding-right: 3px;
+  color: #00b651;
+}
+.main {
+  outline: none;
+  border-color: transparent;
+  border-style: none;
+  border-width: 0px;
+  border-radius: 5px;
+  background-color: rgb(239, 239, 239);
+}
+.flexall {
+  display: flex;
+}
+.in {
+  width: 70%;
+  margin-top: 5px;
+}
+.color {
+  color: #0f6cc4;
+}
+.badge {
+  display: flex;
+  /* border: 1px solid black; */
+  width: 30%;
+  padding: 4px 10px 4px 10px;
+  width: 50%;
+  margin-left: 20px;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-size: 8pt;
+  cursor: pointer;
+  font-weight: bold;
+  color: #23323e;
+}
+.allbadge {
+  height: 22px;
+  overflow: hidden;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAWCAYAAAAILVbQAAAAtElEQVR42m3RyRGCQBQE0E7XCMzAmxEqi7MwK4gRtPNHBKE8vOrfzWWqwPlyPR3BDIH2ALdGUdzbDZpOs1lK02reS0fbG+50hugelp2y7H9A6YEP7YotoYyjXqgFtPU0g+eaBeSw1fJOV95pna/HILxkJKQ4L+IK38GHDVwI9DEyxLRC+B3SOibGUlLaEvXIiTnnKhWQL1nG8TNKQoaxHNU01kSu5TNMMhaY5ydfr3kH/37cG66rhkaL6M5EAAAAAElFTkSuQmCC) -0px -0px
+    repeat-x;
+    border: 1px solid rgb(150, 139, 139);
+    width: 30%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

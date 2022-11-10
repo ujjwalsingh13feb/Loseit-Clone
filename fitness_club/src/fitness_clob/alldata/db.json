@@ -1,0 +1,28 @@
+{
+  "personimage": [
+    {
+      "myimage": "https://github.com/Anmoljagota/Anmoljagota.github.io/blob/master/src/utilits/anmol3-removebg-preview%20crop.jpg?raw=true"
+    }
+  ],
+  "userdetails": [
+    {
+      "name": "Anmol jagota"
+    },
+    {
+      "location": "Ropar, Punjab"
+    },
+    {
+      "member": "member since:Nov, 2022"
+    }
+  ],
+  "send": [
+    { "email": "Send Email" },
+    { "email": "Send message" },
+    { "email": "Edit profile" }
+  ],
+  "status":[
+    {"badges":"Status"},
+    {"badges":"Profile"},
+    {"badges":"Badges"}
+  ]
+}

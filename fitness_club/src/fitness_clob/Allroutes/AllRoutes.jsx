@@ -10,15 +10,15 @@ import { Routes, Route } from "react-router-dom";
 const AllRoutes = () => {
   return (
     <div>
-      <Routes>
-        {/* <Route path="/activity" element={<Activity />}></Route> */}
-        {/* <Route path="/Addfriend" element={<Addfriend />}></Route>
+     <Routes>
+        {/* <Route path="/activity" element={<Activity />}></Route>
+        <Route path="/Addfriend" element={<Addfriend />}></Route>
         <Route path="/find" element={<Find />}></Route>
         <Route path="/friends" element={<Friends />}></Route>
         <Route path="/invitation" element={<Invitations />}></Route>
-        <Route path="/posts" element={<Posts />}></Route>
-        <Route path="/profile" element={<Profile />}></Route> */}
-      </Routes>
+        <Route path="/posts" element={<Posts />}></Route> */}
+        <Route path="/profile" element={<Profile />}></Route>
+      </Routes> 
     </div>
   );
 };

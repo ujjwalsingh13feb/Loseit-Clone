@@ -1,0 +1,32 @@
+.innerbox{
+    border: 1px solid black;
+    width: 80%;
+    margin-left: 20%;
+    height: 38vw;
+    display: flex;
+    margin: auto;
+}
+.activity{
+    border: 1px solid black;
+    height: 20px;
+    width: 96%;
+    padding: 3px;
+    font-size: 9pt;
+    display: flex;
+    margin-top: 3px;
+    cursor: pointer;
+    display: flex;
+}
+.icon{
+    font-size: 30px;
+}
+.flex{
+    display: flex;
+}
+.links{
+    margin-left: 15px;
+}
+.active{
+    background-color: #e2e6e9;
+    width: 80%;
+}

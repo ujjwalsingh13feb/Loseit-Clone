@@ -1,0 +1,28 @@
+{
+    "names":[
+        {"data":"Activity"},
+        {"data":"Invitation"},
+        {"icon1":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACoUlEQVR42sVUS2gTQRhOqmkb8sK6ze4mm+zO7ibZmQ1RaXuISUGtbZOmSWYLEcQH9uDFgwe9iWehiEWkCB7Ex0kP4kHx4gOvngSLgujBUiJVPIhQFfH1T5hiJKFJvbjwscw//3zzf/9jXK7/9elpZxqwqBPnvY7LxxQl6wWz+98J7eqCbju/GDRcvioIWAbz5q4JTLPYBwgSUvPrQ7WQhp15IPuJSPWNrGYdcBkAeLoiEzMTPmQ7R5FNb8D/mo7pLSBbZoTxxORcX3AwIRu7h2Jm0XC5aps6EqqZMoLDTwDfdJuuwP/7mlyEyw+01NQc2JcRqVwKKlkWac+6hBqh2+HwSxWXrwvK8C6EK4/XCP+ArsQTheN+vxjuKF0n1Vk49CWWHD/h9Q4oOqk8+ouM0Hcyyh8CV1aYYKfiuPU0PWPYtC6pO0vRxNg0kLzlZJ+RVboraaNHwC8KCPHo1m0ft0oqO2LJCSoIVhLkLjRF9lFWcweaIvN024ssyf3hcFpEmN5plgtt80yzSvOqVZqRzOLgRpq7ESkk/zknWgIswnq1sbbpByA9KYoZX1ekZmZGMQi9ycleRbT8bDgyPB7R98zC+gWzq7h0MRCICB0nRsfVvXDgHs/baxmNHgRzBLBlq7ItyiKFy+pSPF/jE9Oe0ExTAySdM2ynziN7CpHt52SNIiBcPQx7X2Geb/NKBwCt02IQ5yyfDpb8VZBzWYyOjMGW1FTRHrjwCm/sT2qicBpeHbPtpIDTDwZ2s4Ry+yA3KTCz/Pi4JDdPx5RqlS+oePq+ZlUexlMFlo7elsIwmWzEQkJqmL0PPKq+ltsJ6fWLmTDrUTmey0vxERus3hY/kHA+lpw8xSX6eF7atYOb77Go+jnaNriHJziwgYfT3YTG9xvU0LksYfIzBAAAAABJRU5ErkJggg=="},
+        {"icon1":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACnklEQVR42uWUXUhTYRjHd9dFFH1o2zyVbjvoNiOaYLcSQQiRZEjdRJcW2EUEFZJKF4E3QQTeRNZlQV1U0IVBVleZmoU6bXPu+8vNfbkd93Xm/j3vO4eCmxp01wsP5xw474///3n+76tQ/L+rv/3w1YH2muG/LbavKgy7WcUiimsFyLksMsk4KkLLsGw6iXx2FYVcBgU5hx9vh/DowgE8PKPgNfLkJhJLHkR9doRdFiwtzsBv/Yl7XSZ3RWAuLUHOZ7FWkLGaWCbYQQx3tyCXkfC67yKHmkdfIRZwYtltJeAs/JYdgIV8jlvKJGMYfXqXAC8JuLoB/LQBDDnNOwPLCovFNbIt81696e/ksPeD17AS9hHQsaFwO8tZaQV5UiNnSz1kcNvYBw77+mIAqegSEkEPYn47AS0I2qiHlqnqwHQqjoyUJKUpAktccWhxGh+HbtHGSSQjAcQDLhqKDWHnPAGn4ZufrA6UYmEaRhQZBqZKUyyYMqbwy/P76xNet2s3I0D9885NVAbKFBWmgNmSYiFI8TC9hwjUx4Gfn/WSVQcingWEHCV1zK5nbrwyML0S5XYSIS9vfLmYqnjQhRhlL+JdoPz9RtBeiotvfgLu2bGtwPJJiXgXecNZLOJBJ3+y74jXVoqJYw5BmmzAyqxOwmP+zmHbHr9qxSLCbAYWfqG30zDOQFVhu704/NYpbnOLxc1LFMU9h0Rxf22DUSVo9Y0qbXNrnUZ/TtAYLws64/U6neFOndb4oOP0sXfdbaop98w33L5kiqp1hk5Vg75NaDCeUtY3aVSiWKtUntyrqGlq2ldfb1BvhhHkiqA13lBr9b0EGxS0hseszrceH+lpb3T1dJicap2+W9A0d9F/Z9WioeWorlk8ojmh/Of36h8VB8Hx20/i6AAAAABJRU5ErkJggg=="}
+       ],
+     "frieds":  [
+        {"friends":"Friends"},
+        {"lists":"Friends List"},
+        {"lists":"View My Profile"},
+        {"lists":"Add Friends"}
+       ],
+       "Groups":[
+        {"group":"Groups"},
+        {"posts":"Recent Posts"},
+        {"posts":"Find Group"}
+       ],
+       "profiles":[
+{"profile":"Profile"},
+{"edit":"Edit Profile"},
+{"edit":"Edit Picture"},
+{"edit":"Edit Privacy"}
+       ]
+     
+       
+   
+}

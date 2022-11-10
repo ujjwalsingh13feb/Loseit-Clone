@@ -1,7 +1,43 @@
 .color{
     background-color: #e2e6e9;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     color:#2c475c;
     font-size: 9pt;
     padding: 3px;
+}
+.comment{
+    background-color: white;
+    /* border: 1px solid black; */
+    font-size: 10pt;
+    font-weight: 650;
+    width: 95%;
+   margin:6px 0px 0px 18px;
+   padding: 8px;
+}
+.inputbox{
+    margin-top: 5px;
+    width: 100%;
+    /* border:1px solid red; */
+}
+.in{
+    /* border: 1px solid blue; */
+    width: 79%;
+    padding: 5px 0px 5px 0px;
+   height: 10px;
+}
+.name{
+    color:#0B6CC4;
+    font-size: 10pt;
+}
+.flexall{
+    display: flex;
+}
+.fixcolor{
+    color:#0B6CC4;
+    /* margin-left: 4px; */
+    cursor: pointer;
+}
+.todos{
+    background-color: white;
+    margin-top: 15px;
 }
