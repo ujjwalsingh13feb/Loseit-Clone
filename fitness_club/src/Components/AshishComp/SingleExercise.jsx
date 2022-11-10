@@ -15,8 +15,8 @@ const dispatchDetails = {
     "Quantity": "",
 }
 
-export default function SingleFood(props) {
-    const { storeFood, open, handleOpen, handleServerData } = props;
+export default function SingleExercise(props) {
+    const { storeExercise, open, handleOpen, handleServerData } = props;
     const [store, setStore] = useState(null);
     const [type, setType] = useState("");
     const [quantity, setQuantity] = useState(1);
@@ -24,13 +24,17 @@ export default function SingleFood(props) {
     // const { breakfasts } = useSelector((store) => store.breakfast)
     // console.log('breakfasts:', breakfasts);
     // console.log("store:", store);
+    // calories_per_hour: 435
+    // duration_minutes: 60
+    // name: "Skiing, water skiing"
+    // total_calories: 435
 
     let CalValue = 0;
     let ProValue = 0;
     let CabValue = 0;
     let FatValue = 0;
     useEffect(() => {
-        setStore(storeFood.nutrients);
+        setStore(storeExercise.nutrients);
     }, []);
 
     if (store) {
@@ -48,61 +52,20 @@ export default function SingleFood(props) {
     const handleQuantityChange = (e) => {
         setQuantity(e.target.value);
     };
-    CalValue = (CalValue * quantity).toFixed(2);
-    ProValue = (ProValue * quantity).toFixed(2);
-    CabValue = (CabValue * quantity).toFixed(2);
-    FatValue = (FatValue * quantity).toFixed(2);
+
 
     const handleType = (e) => {
         setType(e.target.value);
     };
-    switch (type) {
-        case "Gram": {
-            CalValue *= 0.1;
-            CabValue *= 0.1;
-            ProValue *= 0.1;
-            FatValue *= 0.1;
-        }
-        case "Ounce": {
-            CalValue = (CalValue * 0.35).toFixed(2);
-            CabValue = (CabValue * 0.35).toFixed(2);
-            ProValue = (ProValue * 0.35).toFixed(2);
-            FatValue = (FatValue * 0.35).toFixed(2);
-        }
-        case "Pound": {
-            CalValue = (CalValue * 2.2).toFixed(2);
-            CabValue = (CabValue * 2.2).toFixed(2);
-            ProValue = (ProValue * 2.2).toFixed(2);
-            FatValue = (FatValue * 2.2).toFixed(2);
-        }
-        case "Kilogram": {
-            CalValue *= 10;
-            CabValue *= 10;
-            ProValue *= 10;
-            FatValue *= 10;
-        }
-        case "Glass": {
-            CalValue = (CalValue * 0.25).toFixed(2);
-            CabValue = (CabValue * 0.25).toFixed(2);
-            ProValue = (ProValue * 0.25).toFixed(2);
-            FatValue = (FatValue * 0.25).toFixed(2);
-        }
-        default: {
-            CalValue *= 1;
-            CabValue *= 1;
-            ProValue *= 1;
-            FatValue *= 1;
-        }
-    }
-
+  
     const handleAddFood = () => {
         if (store) {
             dispatchDetails.Calories = CalValue;
             dispatchDetails.Carbohydrates = CabValue;
             dispatchDetails.Fat = FatValue;
             dispatchDetails.Protein = ProValue;
-            dispatchDetails.foodId = storeFood.foodId;
-            dispatchDetails.label = storeFood.label;
+            dispatchDetails.foodId = storeExercise.foodId;
+            dispatchDetails.label = storeExercise.label;
             dispatchDetails.Quantity = quantity;
         }
         // console.log('dispatchDetails:', dispatchDetails);
@@ -133,7 +96,7 @@ export default function SingleFood(props) {
             <Box className={styles.SingleHeading}>
                 <Image w="30px" src="/FitnessClub.png" />
                 <Heading as="h1" fontSize="14px" ml="10px">
-                    {storeFood.label}
+                    {storeExercise.name}
                 </Heading>
             </Box>
 

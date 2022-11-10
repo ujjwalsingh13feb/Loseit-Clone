@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# _LOSEIT_ (Clone)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+**LoseIt is an e-commerce website which provides diet plans as well. In this project we have cloned some important features of the website from sign-up to creating diet plan for yourself with decent UI.**
 
-In the project directory, you can run:
+**User can `sign` in or `sign` up using `google sign in` or through `email verification`.**
 
-### `npm start`
+## Project look like this
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```javascript
+// here we have to put the ss of the project
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Build with
 
-### `npm test`
+<table  align=center>
+  <tr>
+ <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1280px-Node.js_logo.svg.png"  height=100   width=150 ></td>
+     <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png" height=100   ></td>
+    <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png"  height=100   width=150 ></td>
+     <td align=center> <img src="https://img.icons8.com/nolan/64/wikipedia.png"  height=100  ></td>
+  </tr><tr><td align=center>  <img src="https://img.icons8.com/color/48/null/chakra-ui.png"   width=100  ></td>
+   <td align=center> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/768px-Bootstrap_logo.svg.png"  height=100    ></td>
+  <td align=center> <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png"  height=100  ></td>
+  <td align=center> <img src="https://img.icons8.com/plasticine/100/null/github.png"  height=100  ></td>
+  </tr>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</table>
 
-### `npm run build`
+<hr/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Functionalities
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation and setup instruction
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tool Used
 
-### `npm run eject`
+- ### **Frontend**
+- ### **Backend**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ### **Integration**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🤝 **_Collaborators_**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# 🧔🏻 **Prajwal Jaiswal** `Project Manager`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Github:
+- Twitter:
+- Linkedin:
+- Email:
 
-## Learn More
+# 👨🏻 **Ujjwal Singh** `Team Leader`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Github: [@ujjwal](https://github.com/ujjwalsingh13feb)
+- Linkedin: [Ujjwal Singh](www.linkedin.com/in/ujjwalsingh13feb)
+- Email: (ujjwalsingh13feb@gmail.com)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 🧑🏻 **Ashish Kohad**
 
-### Code Splitting
+- Github:[@Ashish Kohad](https://github.com/AshishKohad27)
+- Linkedin: [Ashish Kohad](https://www.linkedin.com/in/ashish-kohad27/)
+- Email: (kohadashish27@gmial.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# 👱🏻‍♂️ **Anmol jagota**
 
-### Analyzing the Bundle Size
+- Github:[@Anmol jagota](https://github.com/Anmoljagota)
+- Linkedin:[Anmol jagota](www.linkedin.com/in/anmol-jagota-69a861192)
+- Email:(anmoljagota@gmail.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# 🧑🏻 **Shubham Muddamwar**
 
-### Making a Progressive Web App
+- Github: [@Shubham Muddamwar](https://github.com/Shubham18598)
+- Linkedin: [Shubham Muddamwar](https://www.linkedin.com/in/shubham-muddamwar/)
+- Email: (muddamwarshubham98@gmail.com)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+# API Documentation:- 
+## https://fitness-club-server.onrender.com/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
