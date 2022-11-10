@@ -6,13 +6,16 @@ import {
     GET_BREAKFAST_ERROR,
     GET_BREAKFAST_LOADING,
     GET_BREAKFAST_SUCCESS,
+    POST_BREAKFAST_ERROR,
+    POST_BREAKFAST_LOADING,
+    POST_BREAKFAST_SUCCESS,
 } from "./breakfast.types";
 
 // 1. Get BreakFast
 export const getbreakfast = () => async (dispatch) => {
     dispatch({ type: GET_BREAKFAST_LOADING });
     try {
-        let response = await axios(`http://localhost:3801/breakfast`); // FOR MONGODB
+        let response = await axios.get(`https://fitness-club-server.onrender.com/breakfast`); // FOR MONGODB
         let data = response.data;
         dispatch({ type: GET_BREAKFAST_SUCCESS, payload: data });
     } catch (error) {
@@ -20,14 +23,29 @@ export const getbreakfast = () => async (dispatch) => {
     }
 };
 
-//2. Delete Breakfast
+//2. Post Breakfast
+export const postbreakfast = (payload) => async (dispatch) => {
+    console.log('payload:', payload)
+    dispatch({ type: POST_BREAKFAST_LOADING });
+    try {
+        let response = await axios.post(`https://fitness-club-server.onrender.com/breakfast`, payload); // FOR MONGODB
+        let data = response.data;
+        // console.log('data:', data)
+        dispatch({ type: POST_BREAKFAST_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: POST_BREAKFAST_ERROR });
+    }
+};
+
+
+//3. Delete Breakfast
 export const deletebreakfast = (payload) => async (dispatch) => {
+    console.log('payload of Delete:', payload)
     dispatch({ type: DELETE_BREAKFAST_LOADING });
     try {
         let response = await axios.delete(
-            `http://localhost:3801/breakfast/${payload.id}`
+            `https://fitness-club-server.onrender.com/breakfast/${payload.id}`
         );
-        let data = response.data;
         dispatch({ type: DELETE_BREAKFAST_SUCCESS, payload });
     } catch (error) {
         dispatch({ type: DELETE_BREAKFAST_ERROR });

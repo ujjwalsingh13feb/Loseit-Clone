@@ -1,41 +1,40 @@
 import {
     Box,
-    Button,
-    Collapse,
     Heading,
     Image,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
-    ScaleFade,
     SimpleGrid,
     Table,
     TableContainer,
     Tbody,
     Td,
-    Text,
     Th,
     Thead,
     Tr,
-    useDisclosure,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../../Pages/AshishPages/Css/AddFood.module.css";
+import {
+    deletebreakfast,
+    getbreakfast,
+    postbreakfast,
+} from "../../Redux/AshsihRedux/breakfast/breakfast.action";
+import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
 
 export default function Breakfast() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [storeFood, setStoreFood] = useState({});
-
     const [value, setValue] = useState("");
+    const [totalCalories, setTotalCalories] = useState(0);
     const [post, setPost] = useState([]);
+
+    const dispatch = useDispatch();
+    const { breakfasts } = useSelector((store) => store.breakfast);
+    console.log("breakfasts:", breakfasts);
+
     const handleChange = (e) => {
         setValue(e.target.value);
     };
@@ -44,7 +43,7 @@ export default function Breakfast() {
         try {
             const options = {
                 method: "GET",
-                url: "https://edamam-food-and-grocery-database.p.rapidapi.com/parser?page=2&limit=2",
+                url: "https://edamam-food-and-grocery-database.p.rapidapi.com/parser",
                 params: { ingr: value },
                 headers: {
                     "X-RapidAPI-Key":
@@ -56,38 +55,57 @@ export default function Breakfast() {
             axios
                 .request(options)
                 .then(function (response) {
-                    //fOOD
-                    console.log(response.data);
-                    console.log(response.data.hints);
                     setPost(response.data.hints);
                 })
                 .catch(function (error) {
-                    console.error(error);
+                    //   console.error(error);
                 });
         } catch (error) { }
+
+        // calling data from redux
+        dispatch(getbreakfast());
+
     }, [value]);
 
     const handleClick = () => {
-        console.log(value);
-        console.log(post);
         setValue("");
         setPost([]);
     };
 
     const handleOpen = (food) => {
-        console.log("food:", food);
         setOpen(!open);
-        console.log("hello");
         setStoreFood(food);
     };
 
-    console.log("open:", open);
+    //   console.log("open:", open);
 
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        // console.log('payloadToServer:', payloadToServer)
+        dispatch(postbreakfast(payloadToServer));
+    };
+
+    const handleDeleteItem = (itemDeleteFromServer) => {
+        console.log("itemDeleteFromServerId:", itemDeleteFromServer);
+        dispatch(deletebreakfast(itemDeleteFromServer));
+    };
+
+    useEffect(() => {
+        //Counting Calories
+        if (breakfasts) {
+            let result = 0;
+            breakfasts.forEach((item) => (
+                result += item.Calories
+            ))
+            console.log("result:", result);
+            setTotalCalories(result.toFixed(2));
+        }
+    }, [breakfasts])
     return (
-        <Box className={styles.foodLog}>
+        <Box className={styles.foodLog} pl="15px" pr="15px">
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
                 <Box>
-                    <Heading as="h1">Breakfast:0</Heading>
+                    <Heading as="h1">Breakfast: {totalCalories}</Heading>
                 </Box>
                 <Box>
                     <button onClick={handleClick}>
@@ -110,15 +128,16 @@ export default function Breakfast() {
                                     storeFood={storeFood}
                                     open={open}
                                     handleOpen={handleOpen}
+                                    handleServerData={handleServerData}
                                 />
                             ) : (
                                 <Box className={styles.FoodScroll}>
                                     <Heading as="h1">All Foods</Heading>
                                     {post &&
                                         post.map((ele) => (
-                                            <Box>
+                                            <Box key={ele.foodId}>
                                                 <Box>
-                                                    <Image src="/FitnessClub.jpeg" />
+                                                    <Image src="/FitnessClub.png" />
                                                 </Box>
 
                                                 <Box>
@@ -158,23 +177,13 @@ export default function Breakfast() {
                         </Thead>
                         {/* Mapping happen over here */}
                         <Tbody textAlign="center">
-                            <Tr>
-                                <Td>Apple</Td>
-                                <Td textAlign="center">1</Td>
-                                <Td textAlign="center" isNumeric>
-                                    46
-                                </Td>
-                                <Td>
-                                    <ImCross />
-                                </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>Banana</Td>
-                                <Td textAlign="center">1</Td>
-                                <Td textAlign="center" isNumeric>
-                                    56
-                                </Td>
-                            </Tr>
+                            {breakfasts &&
+                                breakfasts.map((item) => (
+                                    <DisplayFromServer
+                                        item={item}
+                                        handleDeleteItem={handleDeleteItem}
+                                    />
+                                ))}
                         </Tbody>
                     </Table>
                 </TableContainer>
