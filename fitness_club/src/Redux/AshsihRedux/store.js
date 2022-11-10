@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
 
     AuthReducer:AuthReducer,
     Reducer:Reducer
+    //  hello i am conflict 
 });
 
 const createComposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
