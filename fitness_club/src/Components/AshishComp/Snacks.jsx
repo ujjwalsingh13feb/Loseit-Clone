@@ -1,25 +1,166 @@
-import { Box, Heading, SimpleGrid, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import {
+    Box,
+    Heading,
+    Image,
+    SimpleGrid,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
+} from "@chakra-ui/react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "../../Pages/AshishPages/Css/AddFood.module.css";
+import { deletesnacks, getsnacks, postsnacks } from "../../Redux/AshsihRedux/snacks/snacks.action";
+import DisplayFromServer from "./DisplayFromServer";
+import SingleFood from "./SingleFood";
 
 export default function Snacks() {
+    const [open, setOpen] = useState(false);
+    const [storeFood, setStoreFood] = useState({});
+    const [value, setValue] = useState("");
+    const [totalCalories, setTotalCalories] = useState(0);
+    const [post, setPost] = useState([]);
+
+    const dispatch = useDispatch();
+    const { snacks } = useSelector((store) => store.snack);
+    console.log("snacks:", snacks);
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
+    useEffect(() => {
+        //Food
+        try {
+            const options = {
+                method: "GET",
+                url: "https://edamam-food-and-grocery-database.p.rapidapi.com/parser",
+                params: { ingr: value },
+                headers: {
+                    "X-RapidAPI-Key":
+                        "7f05e07b5bmshb869046befc8649p1fd334jsn35099610d923",
+                    "X-RapidAPI-Host": "edamam-food-and-grocery-database.p.rapidapi.com",
+                },
+            };
+
+            axios
+                .request(options)
+                .then(function (response) {
+                    setPost(response.data.hints);
+                })
+                .catch(function (error) {
+                    //   console.error(error);
+                });
+        } catch (error) { }
+
+        // calling data from redux
+        dispatch(getsnacks());
+
+    }, [value]);
+
+    const handleClick = () => {
+        setValue("");
+        setPost([]);
+    };
+
+    const handleOpen = (food) => {
+        setOpen(!open);
+        setStoreFood(food);
+    };
+
+    //   console.log("open:", open);
+
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        // console.log('payloadToServer:', payloadToServer)
+        dispatch(postsnacks(payloadToServer));
+    };
+
+    const handleDeleteItem = (itemDeleteFromServer) => {
+        console.log("itemDeleteFromServerId:", itemDeleteFromServer);
+        dispatch(deletesnacks(itemDeleteFromServer));
+    };
+
+    useEffect(() => {
+        //Counting Calories
+        if (snacks) {
+            let result = 0;
+            snacks.forEach((item) => (
+                result += item.Calories
+            ))
+            console.log("result:", result);
+            setTotalCalories(result.toFixed(2));
+        }
+    }, [snacks])
     return (
-        <Box className={styles.foodLog}>
-            <SimpleGrid column={{ base: 1, sm: 2, md: 2 }} m="15px">
-                <Box >
-                    <Heading as="h1">Snacks:0</Heading>
+        <Box className={styles.foodLog} pl="15px" pr="15px">
+            <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
+                <Box>
+                    <Heading as="h1">Snacks: {totalCalories}</Heading>
                 </Box>
                 <Box>
-                    <button>
+                    <button onClick={handleClick}>
                         <FaSearch />
                     </button>
-                    <input type="text" placeholder="Search" />
+                    <input
+                        type="text"
+                        value={value}
+                        onChange={handleChange}
+                        placeholder="Search & Add Food"
+                    />
                 </Box>
             </SimpleGrid>
-            <Box h="auto" className={styles.foodLogDisplay} pl="10px" pr="10px" >
+            <Box>
+                <Box>
+                    {value.length !== 0 ? (
+                        <Box className={styles.FoodScrollBody}>
+                            {open ? (
+                                <SingleFood
+                                    storeFood={storeFood}
+                                    open={open}
+                                    handleOpen={handleOpen}
+                                    handleServerData={handleServerData}
+                                />
+                            ) : (
+                                <Box className={styles.FoodScroll}>
+                                    <Heading as="h1">All Foods</Heading>
+                                    {post &&
+                                        post.map((ele) => (
+                                            <Box key={ele.foodId}>
+                                                <Box>
+                                                    <Image src="/FitnessClub.png" />
+                                                </Box>
+
+                                                <Box>
+                                                    <button onClick={() => handleOpen(ele.food)}>
+                                                        {ele.food.label}
+                                                    </button>
+                                                </Box>
+                                            </Box>
+                                        ))}
+                                </Box>
+                            )}
+                            <Heading as="h1">All Foods</Heading>
+                        </Box>
+                    ) : (
+                        <Box
+                            style={{
+                                margin: "auto",
+                                height: "0",
+                                width: "0",
+                            }}
+                        ></Box>
+                    )}
+                </Box>
+            </Box>
+            <Box h="auto" className={styles.foodLogDisplay} pl="10px" pr="10px">
                 <TableContainer>
-                    <Table  variant=''  size="sm" >
+                    <Table variant="" size="sm">
                         <Thead>
                             <Tr>
                                 <Th>Food</Th>
@@ -32,27 +173,17 @@ export default function Snacks() {
                         </Thead>
                         {/* Mapping happen over here */}
                         <Tbody textAlign="center">
-                            <Tr>
-                                <Td>Apple</Td>
-                                <Td textAlign="center">1</Td>
-                                <Td textAlign="center" isNumeric>
-                                    46
-                                </Td>
-                                <Td>
-                                    <ImCross />
-                                </Td>
-                            </Tr>
-                            <Tr>
-                                <Td>Banana</Td>
-                                <Td textAlign="center">1</Td>
-                                <Td textAlign="center" isNumeric>
-                                    56
-                                </Td>
-                            </Tr>
+                            {snacks &&
+                                snacks.map((item) => (
+                                    <DisplayFromServer
+                                        item={item}
+                                        handleDeleteItem={handleDeleteItem}
+                                    />
+                                ))}
                         </Tbody>
                     </Table>
                 </TableContainer>
             </Box>
         </Box>
-    )
+    );
 }

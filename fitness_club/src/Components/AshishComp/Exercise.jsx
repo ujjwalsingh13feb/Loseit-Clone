@@ -14,45 +14,64 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../Pages/AshishPages/Css/AddFood.module.css";
-import { deletedinner, getdinner, postdinner } from "../../Redux/AshsihRedux/dinner/dinner.action";
-
+import {
+    deletebreakfast,
+    getbreakfast,
+    postbreakfast,
+} from "../../Redux/AshsihRedux/breakfast/breakfast.action";
 import DisplayFromServer from "./DisplayFromServer";
+import SingleExercise from "./SingleExercise";
 import SingleFood from "./SingleFood";
 
-export default function Dinners() {
+export default function Exercise() {
     const [open, setOpen] = useState(false);
-    const [storeFood, setStoreFood] = useState({});
+    const [storeExercise, setStoreFood] = useState({});
     const [value, setValue] = useState("");
     const [totalCalories, setTotalCalories] = useState(0);
     const [post, setPost] = useState([]);
 
-    const dispatch = useDispatch();
-    const { dinners } = useSelector((store) => store.dinner);
-    console.log("dinners:", dinners);
+    // const dispatch = useDispatch();
+    // const { breakfasts } = useSelector((store) => store.breakfast);
+    // console.log("breakfasts:", breakfasts);
 
     const handleChange = (e) => {
         setValue(e.target.value);
     };
+
     useEffect(() => {
         //Food
         try {
+            // const options = {
+            //     method: "GET",
+            //     url: "https://edamam-food-and-grocery-database.p.rapidapi.com/parser",
+            //     params: { ingr: value },
+            //     headers: {
+            //         "X-RapidAPI-Key":
+            //             "7f05e07b5bmshb869046befc8649p1fd334jsn35099610d923",
+            //         "X-RapidAPI-Host": "edamam-food-and-grocery-database.p.rapidapi.com",
+            //     },
+            // };
             const options = {
-                method: "GET",
-                url: "https://edamam-food-and-grocery-database.p.rapidapi.com/parser",
-                params: { ingr: value },
+                method: 'GET',
+                url: 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned',
+                params: { activity: value },
                 headers: {
-                    "X-RapidAPI-Key":
-                        "7f05e07b5bmshb869046befc8649p1fd334jsn35099610d923",
-                    "X-RapidAPI-Host": "edamam-food-and-grocery-database.p.rapidapi.com",
-                },
+                    'X-RapidAPI-Key': '7f05e07b5bmshb869046befc8649p1fd334jsn35099610d923',
+                    'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com'
+                }
             };
 
             axios
                 .request(options)
                 .then(function (response) {
-                    setPost(response.data.hints);
+                    // setPost(response.data.hints);
+
+                    //Exercise
+                    console.log(response.data);
+                    setPost(response.data);
                 })
                 .catch(function (error) {
                     //   console.error(error);
@@ -60,7 +79,7 @@ export default function Dinners() {
         } catch (error) { }
 
         // calling data from redux
-        dispatch(getdinner());
+        // dispatch(getbreakfast());
 
     }, [value]);
 
@@ -79,30 +98,31 @@ export default function Dinners() {
     // Setting payload inside data base
     const handleServerData = (payloadToServer) => {
         // console.log('payloadToServer:', payloadToServer)
-        dispatch(postdinner(payloadToServer));
+        // dispatch(postbreakfast(payloadToServer));
     };
 
     const handleDeleteItem = (itemDeleteFromServer) => {
         console.log("itemDeleteFromServerId:", itemDeleteFromServer);
-        dispatch(deletedinner(itemDeleteFromServer));
+        // dispatch(deletebreakfast(itemDeleteFromServer));
     };
 
-    useEffect(() => {
-        //Counting Calories
-        if (dinners) {
-            let result = 0;
-            dinners.forEach((item) => (
-                result += item.Calories
-            ))
-            console.log("result:", result);
-            setTotalCalories(result.toFixed(2));
-        }
-    }, [dinners])
+    // useEffect(() => {
+    //     //Counting Calories
+    //     if (breakfasts) {
+    //         let result = 0;
+    //         breakfasts.forEach((item) => (
+    //             result += item.Calories
+    //         ))
+    //         console.log("result:", result);
+    //         setTotalCalories(result.toFixed(2));
+    //     }
+    // }, [breakfasts])
+
     return (
         <Box className={styles.foodLog} pl="15px" pr="15px">
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
                 <Box>
-                    <Heading as="h1">Dinners: {totalCalories}</Heading>
+                    <Heading as="h1">Exercise: {totalCalories}</Heading>
                 </Box>
                 <Box>
                     <button onClick={handleClick}>
@@ -121,8 +141,8 @@ export default function Dinners() {
                     {value.length !== 0 ? (
                         <Box className={styles.FoodScrollBody}>
                             {open ? (
-                                <SingleFood
-                                    storeFood={storeFood}
+                                <SingleExercise
+                                    storeExercise={storeExercise}
                                     open={open}
                                     handleOpen={handleOpen}
                                     handleServerData={handleServerData}
@@ -132,14 +152,14 @@ export default function Dinners() {
                                     <Heading as="h1">All Foods</Heading>
                                     {post &&
                                         post.map((ele) => (
-                                            <Box key={ele.foodId}>
+                                            <Box key={ele.name + Date.now()}>
                                                 <Box>
                                                     <Image src="/FitnessClub.png" />
                                                 </Box>
 
                                                 <Box>
-                                                    <button onClick={() => handleOpen(ele.food)}>
-                                                        {ele.food.label}
+                                                    <button onClick={() => handleOpen(ele)}>
+                                                        {ele.name}
                                                     </button>
                                                 </Box>
                                             </Box>
@@ -174,13 +194,23 @@ export default function Dinners() {
                         </Thead>
                         {/* Mapping happen over here */}
                         <Tbody textAlign="center">
-                            {dinners &&
-                                dinners.map((item) => (
-                                    <DisplayFromServer
-                                        item={item}
-                                        handleDeleteItem={handleDeleteItem}
-                                    />
-                                ))}
+                            <Tr>
+                                <Td>Walking</Td>
+                                <Td textAlign="center">Walking</Td>
+                                <Td textAlign="center" isNumeric>
+                                    Walking
+                                </Td>
+                                <Td>
+                                    <ImCross />
+                                </Td>
+                            </Tr>
+                            {/* {breakfasts &&
+                                // breakfasts.map((item) => (
+                                    // <DisplayFromServer
+                                    //     item={item}
+                                    //     handleDeleteItem={handleDeleteItem}
+                                    // />
+                                // ))} */}
                         </Tbody>
                     </Table>
                 </TableContainer>
