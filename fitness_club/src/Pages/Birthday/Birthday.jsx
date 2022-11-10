@@ -1,6 +1,7 @@
 import React, {useRef, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import styles from "../../All style module/Birthday.module.css";
+import logo from ".//..//../Images/FitnessClub.png";
 
 const Birthday = () => {
    const[show1,setShow1] = useState(false);
@@ -39,7 +40,7 @@ const Birthday = () => {
     <div>
 
      <div className={styles.headerDiv}>
-      <Link to={"/"}><img className={styles.headerImg} src='https://assets.loseit.com/website/corporate/LoseIt_Logo_NoTagline_FullColor.svg' alt='header'/></Link>
+      <Link to={"/"}><img className={styles.headerImg} src={logo} alt='header'/></Link>
      </div>
 
      <div className={styles.middleInsideDiv}>
