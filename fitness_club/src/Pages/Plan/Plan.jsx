@@ -9,6 +9,7 @@ import madel from ".//..//../Images/madale.svg";
 let Total_H= JSON.parse(localStorage.getItem("weightH"));
 let Total_W = JSON.parse(localStorage.getItem("weightU"));
 const sum = (66.5+ 13.8*(+Total_W.curWeight)+5*(+Total_H.height)-6.8*(Total_H.age))
+const Weight_loss = Total_W.curWeight-Total_W.goalWeight
 
 //import { SiTrustpilot } from "react-icons/si";
 //FcCalendar FcRating
@@ -55,7 +56,7 @@ const [date,setDate] = useState("")
       <img className={styles.watermelonImg} src={madel} alt="cal" />
         <div className={styles.calenderInsideDiv}>
             <h1>Total weight loss:</h1>
-            <h1>5 kilograms</h1>
+            <h1>{Weight_loss} kilograms</h1>
         </div>
       </div>
 
