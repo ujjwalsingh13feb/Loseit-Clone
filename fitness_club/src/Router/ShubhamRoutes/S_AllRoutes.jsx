@@ -2,6 +2,8 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from '../../Pages/Login'
 
+
+
 const S_AllRoutes = () => {
   return (
     <Routes>
@@ -9,5 +11,7 @@ const S_AllRoutes = () => {
     </Routes>
   )
 }
+
+
 
 export default S_AllRoutes
