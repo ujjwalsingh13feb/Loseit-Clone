@@ -9,8 +9,10 @@ import { AuthReducer } from "../LoginRedux/AuthReducer";
 import { Reducer } from "../LoginRedux/Reducer";
 import { breakfastReducer } from "./breakfast/breakfast.reducer";
 import { dinnerReducer } from "./dinner/dinner.reducer";
+import { exerciseReducer } from "./exercise/exercise.reducer";
 import { lunchReducer } from "./lunch/lunch.reducer";
 import { snacksReducer } from "./snacks/snacks.reducer";
+import { totalCaloriesReducer } from "./TotalCalories/TotalCalories.reducer";
 
 const rootReducer = combineReducers({
     breakfast: breakfastReducer,
@@ -20,7 +22,9 @@ const rootReducer = combineReducers({
     //  hello i am conflict 
     dinner: dinnerReducer,
     lunch: lunchReducer,
-    snack: snacksReducer
+    snack: snacksReducer,
+    exercise: exerciseReducer,
+    totalcalories: totalCaloriesReducer,
 });
 
 const createComposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -7,6 +7,7 @@ import {
     TableContainer,
     Tbody,
     Td,
+    Text,
     Th,
     Thead,
     Tr,
@@ -16,7 +17,11 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../Pages/AshishPages/Css/AddFood.module.css";
-import { deletedinner, getdinner, postdinner } from "../../Redux/AshsihRedux/dinner/dinner.action";
+import {
+    deletedinner,
+    getdinner,
+    postdinner,
+} from "../../Redux/AshsihRedux/dinner/dinner.action";
 
 import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
@@ -30,7 +35,7 @@ export default function Dinners() {
 
     const dispatch = useDispatch();
     const { dinners } = useSelector((store) => store.dinner);
-    console.log("dinners:", dinners);
+    // console.log("dinners:", dinners);
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -61,7 +66,6 @@ export default function Dinners() {
 
         // calling data from redux
         dispatch(getdinner());
-
     }, [value]);
 
     const handleClick = () => {
@@ -83,7 +87,7 @@ export default function Dinners() {
     };
 
     const handleDeleteItem = (itemDeleteFromServer) => {
-        console.log("itemDeleteFromServerId:", itemDeleteFromServer);
+        // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deletedinner(itemDeleteFromServer));
     };
 
@@ -91,15 +95,13 @@ export default function Dinners() {
         //Counting Calories
         if (dinners) {
             let result = 0;
-            dinners.forEach((item) => (
-                result += item.Calories
-            ))
-            console.log("result:", result);
+            dinners.forEach((item) => (result += item.Calories));
+            // console.log("result:", result);
             setTotalCalories(result.toFixed(2));
         }
-    }, [dinners])
+    }, [dinners]);
     return (
-        <Box className={styles.foodLog} pl="15px" pr="15px">
+        <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
                 <Box>
                     <Heading as="h1">Dinners: {totalCalories}</Heading>
@@ -160,30 +162,42 @@ export default function Dinners() {
                 </Box>
             </Box>
             <Box h="auto" className={styles.foodLogDisplay} pl="10px" pr="10px">
-                <TableContainer>
-                    <Table variant="" size="sm">
-                        <Thead>
-                            <Tr>
-                                <Th>Food</Th>
-                                <Th textAlign="center">Quantity</Th>
-                                <Th textAlign="center" isNumeric>
-                                    Calories
-                                </Th>
-                                <Th w="10px"></Th>
-                            </Tr>
-                        </Thead>
-                        {/* Mapping happen over here */}
-                        <Tbody textAlign="center">
-                            {dinners &&
-                                dinners.map((item) => (
-                                    <DisplayFromServer
-                                        item={item}
-                                        handleDeleteItem={handleDeleteItem}
-                                    />
-                                ))}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                {dinners.length === 0 ? (
+                    <Box
+                        h="86px"
+                        fontSize="14px"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Text color="gray"> No food logged for dinner</Text>
+                    </Box>
+                ) : (
+                    <TableContainer>
+                        <Table variant="" size="sm">
+                            <Thead>
+                                <Tr>
+                                    <Th>Food</Th>
+                                    <Th color="black" textAlign="center">Quantity</Th>
+                                    <Th color="black" textAlign="center" isNumeric>
+                                        Calories
+                                    </Th>
+                                    <Th w="10px"></Th>
+                                </Tr>
+                            </Thead>
+                            {/* Mapping happen over here */}
+                            <Tbody textAlign="center">
+                                {dinners &&
+                                    dinners.map((item) => (
+                                        <DisplayFromServer
+                                            item={item}
+                                            handleDeleteItem={handleDeleteItem}
+                                        />
+                                    ))}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                )}
             </Box>
         </Box>
     );
