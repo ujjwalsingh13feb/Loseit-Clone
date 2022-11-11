@@ -2,12 +2,34 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
+
+
+// Formula used to calculate men's calorie needs is = 66.5 + 13.8 x (body weight in kilograms) 
+// + 5 x (body height in cm) - by 6.8 x age.
+// Wh_H={hUnit: "cm", height: "171", gender: "male", age: "25"}
+// Wh_U{curWeight: "70", goalWeight: "63", unit: "kg"}
+
+
+
+let Total_H= JSON.parse(localStorage.getItem("weightH"));
+let Total_W = JSON.parse(localStorage.getItem("weightU"));
+// console.log(Total_H,Total_W)
+
+
 const Signup = () => {
+
+  // const [caloriesTotal, setCaloriesTotal]=useState(0);
+  const sum = (66.5+ 13.8*(+Total_W.curWeight)+5*(+Total_H.height)-6.8*(Total_H.age))
+  // console.log(sum*1.2)
+//   setCaloriesTotal(sum*1.4)
+// console.log(caloriesTotal)
+
   const [signup, setSignup] = useState({
     email: "",
     password: "",
     age:"",
     location: "",
+    caloriesTotal:sum*1.4,
     
   });
   const [state, setState] = useState("Signup");
@@ -15,9 +37,10 @@ const Signup = () => {
 
   const onChangeInput = (e) => {
     setSignup({ ...signup, [e.target.name]: e.target.value });
+    // setSignup({...signup,caloriesTotal:sum*1.4})
     console.log(signup);
   };
-  // https://dry-plateau-25724.herokuapp.com/user/signup
+  // https://fitness-club-server.onrender.com/signup"
   const handleClick = () => {
     if (signup.email && signup.password) {
       setState("Loading...");
@@ -29,18 +52,22 @@ const Signup = () => {
         })
         .then(() => {
           navigate("/login");
+          // console.log(signup)
         })
         .catch(() => {
           alert("SignUp Failed Try Again!!!");
         });
       } else {
         alert("No data is found , please write data")
-
+    
     }
 
-    setTimeout(() => {
-      setState("Signup");
-    }, 2000);
+    // setTimeout(() => {
+    //   setState("Signup");
+    // }, 2000);
+     
+    
+
   };
   return (
     <Container>

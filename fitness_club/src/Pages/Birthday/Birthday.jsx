@@ -29,7 +29,7 @@ const Birthday = () => {
          let weightH= JSON.parse(localStorage.getItem("weightH"));
          weightH={
             ...weightH,
-            dob:dateRef.current.value
+            age:dateRef.current.value
            
          }
          localStorage.setItem("weightH",JSON.stringify(weightH));
@@ -46,8 +46,13 @@ const Birthday = () => {
      <div className={styles.middleInsideDiv}>
       <div className={styles.arrow}><Link  to={"/gender"}><button>{"<"}</button></Link></div>
        
-      <h1 className={styles.currentW} >When's your birthday?</h1>
+      <h1 className={styles.currentW} >Date Of Birthday</h1>
+
       <input type="date" className={styles.inputDate} ref={dateRef} />
+      
+      <h1 className={styles.currentW} >Age</h1>
+
+      <input type="number" className={styles.inputDate} ref={dateRef} />
       <p style={{color:"red"}}>{show1?"You must be at least 18 years old to use Lose It!.":""}</p>
       <p style={{color:"red"}}>{show2?"This is an invalid height.":""}</p>
         <br />

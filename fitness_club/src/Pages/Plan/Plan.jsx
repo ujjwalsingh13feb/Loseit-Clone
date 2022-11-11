@@ -4,9 +4,16 @@ import styles from "../../All style module/Plan.module.css";
 import star from "./star.png";
 import logo from ".//..//../Images/FitnessClub.png";
 import madel from ".//..//../Images/madale.svg";
+
+
+let Total_H= JSON.parse(localStorage.getItem("weightH"));
+let Total_W = JSON.parse(localStorage.getItem("weightU"));
+const sum = (66.5+ 13.8*(+Total_W.curWeight)+5*(+Total_H.height)-6.8*(Total_H.age))
+
 //import { SiTrustpilot } from "react-icons/si";
 //FcCalendar FcRating
 const Plan = () => {
+
 const [date,setDate] = useState("")
     let handleContinue=()=>{
         const today = new Date()
@@ -40,7 +47,7 @@ const [date,setDate] = useState("")
       <div className={styles.watermelonDiv}> <img className={styles.watermelonImg} src="https://cdn-icons-png.flaticon.com/512/878/878030.png" alt="wm" />
         <div className={styles.watermelonInsideDiv}>
             <h1 className={styles.daily}>Daily calorie budget:</h1>
-            <h1>1795 calories</h1>
+            <h1>{sum*1.4} calories</h1>
         </div>
       </div>
       {/* //<Total weight loss:/> */}
