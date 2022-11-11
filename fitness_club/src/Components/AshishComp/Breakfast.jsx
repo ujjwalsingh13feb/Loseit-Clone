@@ -2,11 +2,13 @@ import {
     Box,
     Heading,
     Image,
+    Input,
     SimpleGrid,
     Table,
     TableContainer,
     Tbody,
     Td,
+    Text,
     Th,
     Thead,
     Tr,
@@ -21,6 +23,11 @@ import {
     getbreakfast,
     postbreakfast,
 } from "../../Redux/AshsihRedux/breakfast/breakfast.action";
+import {
+    totalcalories,
+    totalcaloriesadd,
+    totalcaloriessub,
+} from "../../Redux/AshsihRedux/TotalCalories/TotalCalories.action";
 import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
 
@@ -33,7 +40,9 @@ export default function Breakfast() {
 
     const dispatch = useDispatch();
     const { breakfasts } = useSelector((store) => store.breakfast);
-    console.log("breakfasts:", breakfasts);
+    // console.log("breakfasts:", breakfasts);
+    const { totalCaloriesCount } = useSelector((store) => store.totalcalories);
+    console.log("totalCaloriesCount:", totalCaloriesCount);
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -64,7 +73,6 @@ export default function Breakfast() {
 
         // calling data from redux
         dispatch(getbreakfast());
-
     }, [value]);
 
     const handleClick = () => {
@@ -79,30 +87,31 @@ export default function Breakfast() {
 
     //   console.log("open:", open);
 
-    // Setting payload inside data base
-    const handleServerData = (payloadToServer) => {
-        // console.log('payloadToServer:', payloadToServer)
-        dispatch(postbreakfast(payloadToServer));
-    };
-
     const handleDeleteItem = (itemDeleteFromServer) => {
-        console.log("itemDeleteFromServerId:", itemDeleteFromServer);
+        // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deletebreakfast(itemDeleteFromServer));
+        dispatch(totalcaloriessub(itemDeleteFromServer.Calories));
     };
 
     useEffect(() => {
         //Counting Calories
         if (breakfasts) {
             let result = 0;
-            breakfasts.forEach((item) => (
-                result += item.Calories
-            ))
-            console.log("result:", result);
+            breakfasts.forEach((item) => (result += item.Calories));
+            // console.log("result:", result);
             setTotalCalories(result.toFixed(2));
         }
-    }, [breakfasts])
+    }, [breakfasts]);
+
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        // console.log('payloadToServer:', payloadToServer)
+        dispatch(postbreakfast(payloadToServer));
+        dispatch(totalcaloriesadd(totalCalories));
+    };
+
     return (
-        <Box className={styles.foodLog} pl="15px" pr="15px">
+        <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
                 <Box>
                     <Heading as="h1">Breakfast: {totalCalories}</Heading>
@@ -115,6 +124,7 @@ export default function Breakfast() {
                         type="text"
                         value={value}
                         onChange={handleChange}
+                        colorScheme="black"
                         placeholder="Search & Add Food"
                     />
                 </Box>
@@ -163,30 +173,36 @@ export default function Breakfast() {
                 </Box>
             </Box>
             <Box h="auto" className={styles.foodLogDisplay} pl="10px" pr="10px">
-                <TableContainer>
-                    <Table variant="" size="sm">
-                        <Thead>
-                            <Tr>
-                                <Th>Food</Th>
-                                <Th textAlign="center">Quantity</Th>
-                                <Th textAlign="center" isNumeric>
-                                    Calories
-                                </Th>
-                                <Th w="10px"></Th>
-                            </Tr>
-                        </Thead>
-                        {/* Mapping happen over here */}
-                        <Tbody textAlign="center">
-                            {breakfasts &&
-                                breakfasts.map((item) => (
-                                    <DisplayFromServer
-                                        item={item}
-                                        handleDeleteItem={handleDeleteItem}
-                                    />
-                                ))}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                {breakfasts.length === 0 ? (
+                    <Box h="86px" fontSize="14px" display="flex" justifyContent="center" alignItems="center">
+                        <Text color="gray"> No food logged for breakfast</Text>
+                    </Box>
+                ) : (
+                    <TableContainer>
+                        <Table variant="" size="sm">
+                            <Thead>
+                                <Tr>
+                                    <Th>Food</Th>
+                                    <Th color="black" textAlign="center">Quantity</Th>
+                                    <Th color="black" textAlign="center" isNumeric>
+                                        Calories
+                                    </Th>
+                                    <Th w="10px"></Th>
+                                </Tr>
+                            </Thead>
+                            {/* Mapping happen over here */}
+                            <Tbody textAlign="center">
+                                {breakfasts &&
+                                    breakfasts.map((item) => (
+                                        <DisplayFromServer
+                                            item={item}
+                                            handleDeleteItem={handleDeleteItem}
+                                        />
+                                    ))}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                )}
             </Box>
         </Box>
     );
