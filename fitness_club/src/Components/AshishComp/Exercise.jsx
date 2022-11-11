@@ -7,6 +7,7 @@ import {
     TableContainer,
     Tbody,
     Td,
+    Text,
     Th,
     Thead,
     Tr,
@@ -18,13 +19,13 @@ import { ImCross } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../Pages/AshishPages/Css/AddFood.module.css";
 import {
-    deletebreakfast,
-    getbreakfast,
-    postbreakfast,
-} from "../../Redux/AshsihRedux/breakfast/breakfast.action";
-import DisplayFromServer from "./DisplayFromServer";
+    deleteexercise,
+    getexercise,
+    postexercise,
+} from "../../Redux/AshsihRedux/exercise/exercise.action";
+
+import DisplayFromServerExercise from "./DisplayFromServerExercise";
 import SingleExercise from "./SingleExercise";
-import SingleFood from "./SingleFood";
 
 export default function Exercise() {
     const [open, setOpen] = useState(false);
@@ -33,9 +34,9 @@ export default function Exercise() {
     const [totalCalories, setTotalCalories] = useState(0);
     const [post, setPost] = useState([]);
 
-    // const dispatch = useDispatch();
-    // const { breakfasts } = useSelector((store) => store.breakfast);
-    // console.log("breakfasts:", breakfasts);
+    const dispatch = useDispatch();
+    const { exercises } = useSelector((store) => store.exercise);
+    console.log("exercises:", exercises);
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -55,13 +56,14 @@ export default function Exercise() {
             //     },
             // };
             const options = {
-                method: 'GET',
-                url: 'https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned',
+                method: "GET",
+                url: "https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned",
                 params: { activity: value },
                 headers: {
-                    'X-RapidAPI-Key': '7f05e07b5bmshb869046befc8649p1fd334jsn35099610d923',
-                    'X-RapidAPI-Host': 'calories-burned-by-api-ninjas.p.rapidapi.com'
-                }
+                    "X-RapidAPI-Key":
+                        "7f05e07b5bmshb869046befc8649p1fd334jsn35099610d923",
+                    "X-RapidAPI-Host": "calories-burned-by-api-ninjas.p.rapidapi.com",
+                },
             };
 
             axios
@@ -79,8 +81,7 @@ export default function Exercise() {
         } catch (error) { }
 
         // calling data from redux
-        // dispatch(getbreakfast());
-
+        dispatch(getexercise());
     }, [value]);
 
     const handleClick = () => {
@@ -97,29 +98,27 @@ export default function Exercise() {
 
     // Setting payload inside data base
     const handleServerData = (payloadToServer) => {
-        // console.log('payloadToServer:', payloadToServer)
-        // dispatch(postbreakfast(payloadToServer));
+        console.log("payloadToServer:", payloadToServer);
+        dispatch(postexercise(payloadToServer));
     };
 
     const handleDeleteItem = (itemDeleteFromServer) => {
         console.log("itemDeleteFromServerId:", itemDeleteFromServer);
-        // dispatch(deletebreakfast(itemDeleteFromServer));
+        dispatch(deleteexercise(itemDeleteFromServer));
     };
 
-    // useEffect(() => {
-    //     //Counting Calories
-    //     if (breakfasts) {
-    //         let result = 0;
-    //         breakfasts.forEach((item) => (
-    //             result += item.Calories
-    //         ))
-    //         console.log("result:", result);
-    //         setTotalCalories(result.toFixed(2));
-    //     }
-    // }, [breakfasts])
+    useEffect(() => {
+        //Counting Calories
+        if (exercises) {
+            let result = 0;
+            exercises.forEach((item) => (result += Number(item.calories_per_min)));
+            console.log("result:", result);
+            setTotalCalories(result.toFixed(2));
+        }
+    }, [exercises]);
 
     return (
-        <Box className={styles.foodLog} pl="15px" pr="15px">
+        <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
                 <Box>
                     <Heading as="h1">Exercise: {totalCalories}</Heading>
@@ -180,40 +179,44 @@ export default function Exercise() {
                 </Box>
             </Box>
             <Box h="auto" className={styles.foodLogDisplay} pl="10px" pr="10px">
-                <TableContainer>
-                    <Table variant="" size="sm">
-                        <Thead>
-                            <Tr>
-                                <Th>Food</Th>
-                                <Th textAlign="center">Quantity</Th>
-                                <Th textAlign="center" isNumeric>
-                                    Calories
-                                </Th>
-                                <Th w="10px"></Th>
-                            </Tr>
-                        </Thead>
-                        {/* Mapping happen over here */}
-                        <Tbody textAlign="center">
-                            <Tr>
-                                <Td>Walking</Td>
-                                <Td textAlign="center">Walking</Td>
-                                <Td textAlign="center" isNumeric>
-                                    Walking
-                                </Td>
-                                <Td>
-                                    <ImCross />
-                                </Td>
-                            </Tr>
-                            {/* {breakfasts &&
-                                // breakfasts.map((item) => (
-                                    // <DisplayFromServer
-                                    //     item={item}
-                                    //     handleDeleteItem={handleDeleteItem}
-                                    // />
-                                // ))} */}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                {exercises.length === 0 ? (
+                    <Box
+                        h="86px"
+                        fontSize="14px"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Text color="gray">No exercises logged for today</Text>
+                    </Box>
+                ) : (
+                    <TableContainer>
+                        <Table variant="" size="sm">
+                            <Thead>
+                                <Tr>
+                                    <Th>Exercise</Th>
+                                    <Th color="black" textAlign="center">
+                                        Duration
+                                    </Th>
+                                    <Th color="black" textAlign="center" isNumeric>
+                                        Calories
+                                    </Th>
+                                    <Th w="10px"></Th>
+                                </Tr>
+                            </Thead>
+                            {/* Mapping happen over here */}
+                            <Tbody textAlign="center">
+                                {exercises &&
+                                    exercises.map((item) => (
+                                        <DisplayFromServerExercise
+                                            item={item}
+                                            handleDeleteItem={handleDeleteItem}
+                                        />
+                                    ))}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                )}
             </Box>
         </Box>
     );

@@ -7,6 +7,7 @@ import {
     TableContainer,
     Tbody,
     Td,
+    Text,
     Th,
     Thead,
     Tr,
@@ -33,7 +34,7 @@ export default function Lunch() {
 
     const dispatch = useDispatch();
     const { lunchs } = useSelector((store) => store.lunch);
-    console.log("lunchs:", lunchs);
+    // console.log("lunchs:", lunchs);
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -85,7 +86,7 @@ export default function Lunch() {
     };
 
     const handleDeleteItem = (itemDeleteFromServer) => {
-        console.log("itemDeleteFromServerId:", itemDeleteFromServer);
+        // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deletelunch(itemDeleteFromServer));
     };
 
@@ -94,13 +95,13 @@ export default function Lunch() {
         if (lunchs) {
             let result = 0;
             lunchs.forEach((item) => (result += item.Calories));
-            console.log("result:", result);
+            // console.log("result:", result);
             setTotalCalories(result.toFixed(2));
         }
     }, [lunchs]);
 
     return (
-        <Box className={styles.foodLog} pl="15px" pr="15px">
+        <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
                 <Box>
                     <Heading as="h1">Lunch: {totalCalories}</Heading>
@@ -161,30 +162,42 @@ export default function Lunch() {
                 </Box>
             </Box>
             <Box h="auto" className={styles.foodLogDisplay} pl="10px" pr="10px">
-                <TableContainer>
-                    <Table variant="" size="sm">
-                        <Thead>
-                            <Tr>
-                                <Th>Food</Th>
-                                <Th textAlign="center">Quantity</Th>
-                                <Th textAlign="center" isNumeric>
-                                    Calories
-                                </Th>
-                                <Th w="10px"></Th>
-                            </Tr>
-                        </Thead>
-                        {/* Mapping happen over here */}
-                        <Tbody textAlign="center">
-                            {lunchs &&
-                                lunchs.map((item) => (
-                                    <DisplayFromServer
-                                        item={item}
-                                        handleDeleteItem={handleDeleteItem}
-                                    />
-                                ))}
-                        </Tbody>
-                    </Table>
-                </TableContainer>
+                {lunchs.length === 0 ? (
+                    <Box
+                        h="86px"
+                        fontSize="14px"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <Text color="gray"> No food logged for lunch</Text>
+                    </Box>
+                ) : (
+                    <TableContainer>
+                        <Table variant="" size="sm">
+                            <Thead>
+                                <Tr>
+                                    <Th>Food</Th>
+                                    <Th color="black" textAlign="center">Quantity</Th>
+                                    <Th color="black" textAlign="center" isNumeric>
+                                        Calories
+                                    </Th>
+                                    <Th w="10px"></Th>
+                                </Tr>
+                            </Thead>
+                            {/* Mapping happen over here */}
+                            <Tbody textAlign="center">
+                                {lunchs &&
+                                    lunchs.map((item) => (
+                                        <DisplayFromServer
+                                            item={item}
+                                            handleDeleteItem={handleDeleteItem}
+                                        />
+                                    ))}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
+                )}
             </Box>
         </Box>
     );

@@ -1,0 +1,75 @@
+.progressbar {
+  margin: auto;
+  /* display: flex;     */
+  /* justify-content: center; */
+  /* align-items: center; */
+  padding-top: 18px;
+  position: relative;
+}
+.progressbar > div:nth-child(1) {
+  max-width: 310px;
+  height: 30px;
+  border: 1px solid black;
+  margin: auto;
+  /* background-color: antiquewhite; */
+  border-radius: 10px;
+}
+.progressbar > div:nth-child(1) > div:nth-child(1) {
+  display: flex;
+  font-size: 11px;
+  color: grey;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: -16px;
+}
+.progressbar > div:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00b651;
+  height: 27px;
+  border-radius: 10px;
+}
+.CaloriesBudget {
+  font-size: 11px;
+}
+.CaloriesBudget > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.CaloriesBudget > div:nth-child(1) > p {
+  color: black;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+.CaloriesBudget > div:nth-child(2) > p {
+  color: #808080;
+}
+.CaloriesBudget > div:nth-child(3) > p {
+  color: #808080;
+  margin: 0 -15px;
+}
+.CaloriesBudget > div:nth-child(3) {
+  border-bottom: 1px solid black;
+  margin: auto 15px;
+}
+.CaloriesBudget > div:nth-child(4) {
+  margin-top: 5px;
+  color: black;
+  font-size: 12px;
+}
+.underdailybudget {
+  padding: 0px 15px;
+  padding-top: 10px;
+}
+.underdailybudget > p {
+  font-size: 11px;
+  color: black;
+  border: 1px solid black;
+}
+.underdailybudget > p > span {
+  font-weight: bold;
+}

@@ -35,7 +35,7 @@
 }
 .SingleFoodMicro > div:nth-child(1) {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   width: 380px;
   /* background-color: hotpink;  */

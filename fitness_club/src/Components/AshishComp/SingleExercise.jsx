@@ -6,76 +6,71 @@ import { useDispatch, useSelector } from "react-redux";
 import { postbreakfast } from "../../Redux/AshsihRedux/breakfast/breakfast.action";
 
 const dispatchDetails = {
-    "foodId": "",
-    "label": "",
-    "Calories": "",
-    "Protein": "",
-    "Carbohydrates": "",
-    "Fat": "",
-    "Quantity": "",
+    "calories_per_min": "",
+    "duration_minutes": "",
+    "total_calories_per_min": "",
+    "nameExercise": "",
 }
 
 export default function SingleExercise(props) {
     const { storeExercise, open, handleOpen, handleServerData } = props;
+    console.log('storeExercise:', storeExercise)
     const [store, setStore] = useState(null);
-    const [type, setType] = useState("");
-    const [quantity, setQuantity] = useState(1);
+    const [duration, setDuration] = useState(1);
     // const dispatch = useDispatch();
     // const { breakfasts } = useSelector((store) => store.breakfast)
     // console.log('breakfasts:', breakfasts);
     // console.log("store:", store);
+
     // calories_per_hour: 435
     // duration_minutes: 60
     // name: "Skiing, water skiing"
     // total_calories: 435
 
-    let CalValue = 0;
-    let ProValue = 0;
-    let CabValue = 0;
-    let FatValue = 0;
+    let calories_per_min = 0;
+    let duration_minutes = 0;
+    let total_calories_per_min = 0;
+
     useEffect(() => {
-        setStore(storeExercise.nutrients);
+        setStore(storeExercise);
     }, []);
 
     if (store) {
-        // console.log(store.ENERC_KCAL);
-        CalValue = store.ENERC_KCAL;
-        ProValue = store.PROCNT;
-        CabValue = store.CHOCDF;
-        FatValue = store.FAT;
+        calories_per_min = ((storeExercise.calories_per_hour) / 60).toFixed(2);
+        duration_minutes = ((storeExercise.duration_minutes) / 60).toFixed(2);
+        total_calories_per_min = ((storeExercise.total_calories) / 60).toFixed(2);
     }
 
     const handleBack = () => {
         handleOpen();
     };
 
-    const handleQuantityChange = (e) => {
-        setQuantity(e.target.value);
+
+    const handleDurationChange = (e) => {
+        setDuration(e.target.value);
     };
+    calories_per_min = (calories_per_min * duration).toFixed(2);
+    duration_minutes = (duration_minutes * duration).toFixed(2);
+    total_calories_per_min = (total_calories_per_min * duration).toFixed(2);
 
 
-    const handleType = (e) => {
-        setType(e.target.value);
-    };
-  
-    const handleAddFood = () => {
+    const handleAddExercise = () => {
         if (store) {
-            dispatchDetails.Calories = CalValue;
-            dispatchDetails.Carbohydrates = CabValue;
-            dispatchDetails.Fat = FatValue;
-            dispatchDetails.Protein = ProValue;
-            dispatchDetails.foodId = storeExercise.foodId;
-            dispatchDetails.label = storeExercise.label;
-            dispatchDetails.Quantity = quantity;
+            dispatchDetails.calories_per_min = calories_per_min;
+            dispatchDetails.duration_minutes = duration_minutes;
+            dispatchDetails.total_calories_per_min = total_calories_per_min;
+            dispatchDetails.nameExercise = storeExercise.name;
         }
-        // console.log('dispatchDetails:', dispatchDetails);
+        console.log('dispatchDetails:', dispatchDetails);
         handleServerData(dispatchDetails);
         // dispatch(postbreakfast(dispatchDetails));
         handleOpen();
     };
 
 
-
+    console.log('calories_per_min:', calories_per_min)
+    console.log('duration_minutes:', duration_minutes)
+    console.log('total_calories_per_min:', total_calories_per_min)
 
 
     return (
@@ -102,60 +97,43 @@ export default function SingleExercise(props) {
 
             <Box className={styles.SingleFoodMicro}>
                 <Box mt="15px" bg="">
-                    {/* Quantity */}
+                    {/* duration */}
                     <Input
                         colorScheme="black"
                         color="black"
                         background="gray.300"
                         type="number"
                         placeholder="Qty"
-                        value={quantity}
-                        onChange={handleQuantityChange}
+                        value={duration}
+                        onChange={handleDurationChange}
                     />
-
-                    {/* type gram , Ounce, Pound, Kilogram */}
-                    <Select
-                        background="gray.300"
-                        w="140px"
-                        h="30px"
-                        placeholder="Select option"
-                        onChange={handleType}
-                    >
-                        <option value="Gram">Gram</option>
-                        <option value="Ounce">Ounce</option>
-                        <option value="Pound">Pound</option>
-                        <option value="Kilogram">Kilogram</option>
-                        <option value="Glass">1 Glass</option>
-                    </Select>
 
                     <Button
                         background="gray.300"
                         colorScheme="teal.300"
                         w="100px"
                         h="30px"
-                        onClick={handleAddFood}
+                        onClick={handleAddExercise}
                     >
-                        Add Food
+                        Add Exercise
                     </Button>
                 </Box>
 
                 <Box mt="15px">
                     <Box m="" className={styles.singleCalories}>
                         <Heading as="h4"> Calories</Heading>
-                        <Heading as="h1"> {CalValue}</Heading>
+                        <Heading as="h1"> {calories_per_min}</Heading>
                     </Box>
-                    <Box m="" className={styles.singleMicroNutri}>
-                        <Box>
-                            <Heading as="h4">Proteins</Heading>
-                            <Heading as="h1">{ProValue} g</Heading>
-                        </Box>
-                        <Box>
-                            <Heading as="h4">Fats</Heading>
-                            <Heading as="h1">{FatValue} g</Heading>
-                        </Box>
-                        <Box>
-                            <Heading as="h4">Carbs</Heading>
-                            <Heading as="h1">{CabValue} g</Heading>
+                    <Box m="" 
+                    // className={styles.singleMicroNutri} 
+                    display="flex" flexDirection="column"
+                    marginLeft="50px"
+                    marginRight="75px"
+                
+                    >
+                        <Box >
+                            <Heading as="h4" fontSize="14px" >Duration</Heading>
+                            <Heading as="h1" fontSize="14px">{duration_minutes} min</Heading>
                         </Box>
                     </Box>
                 </Box>

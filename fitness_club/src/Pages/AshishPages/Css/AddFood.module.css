@@ -4,6 +4,7 @@
 .addfoodBody > div {
   margin: auto;
 }
+
 .foodLog {
   position: relative;
 }
@@ -28,25 +29,29 @@
   background-color: white;
   color: black;
   padding: 4px;
+  border: 1px solid black;
+  border-right: 1px solid white;
 }
 .foodLog > div:nth-child(1) > div:nth-child(2) > input {
   background-color: #fff;
   color: black;
   color-scheme: black;
   padding-left: 10px;
+  border: 1px solid black;
+  border-left: 1px solid white;
 }
 .FoodScroll {
   /* background-color: red; */
   position: absolute;
   top: 30px;
-  right:0px;
+  right: 0px;
   width: 400px;
   max-width: 400px;
   height: 305px;
   z-index: 10;
   margin: auto;
   border: 1px solid white;
-  overflow-y:scroll;
+  overflow-y: scroll;
   background: white;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -78,11 +83,10 @@
 .FoodScroll > div:hover {
   background-color: #0b6cc4;
 }
-.FoodScroll >div > div {
+.FoodScroll > div > div {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 .FoodScroll > div > div > img {
   width: 30px;
@@ -95,10 +99,10 @@
   bottom: 0;
   height: 16px;
 }
-.AddFoodInTab{
-    position: sticky;
-    top: 0px;
-    z-index: 30;
+.AddFoodInTab {
+  position: sticky;
+  top: 0px;
+  z-index: 30;
 }
 .foodLogDisplay {
   color: #0b6cc4;
