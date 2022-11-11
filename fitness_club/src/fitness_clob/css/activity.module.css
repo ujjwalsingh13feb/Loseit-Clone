@@ -1,18 +1,25 @@
 .color{
-    background-color: #e2e6e9;
-    /* border: 1px solid black; */
-    color:#2c475c;
-    font-size: 9pt;
-    padding: 3px;
+    font-size: 8pt;
+    font-weight: bold;
+    color: #2c475c;
+    position: relative;
+    width: 92%;
+    margin: auto;
+    /* border:1px solid grey; */
 }
 .comment{
-    background-color: white;
+    background-color: #f4f4f5;
     /* border: 1px solid black; */
     font-size: 10pt;
     font-weight: 650;
     width: 95%;
    margin:6px 0px 0px 18px;
    padding: 8px;
+   color:black;
+   
+}
+.loading{
+    background-color: #f4f4f5;
 }
 .inputbox{
     margin-top: 5px;
@@ -20,7 +27,7 @@
     /* border:1px solid red; */
 }
 .in{
-    /* border: 1px solid blue; */
+   
     width: 79%;
     padding: 5px 0px 5px 0px;
    height: 10px;
@@ -40,4 +47,7 @@
 .todos{
     background-color: white;
     margin-top: 15px;
+    width: 97%;
+    margin: auto;
+    margin-left: 19px;
 }

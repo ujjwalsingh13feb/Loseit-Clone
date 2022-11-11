@@ -1,3 +1,7 @@
+.innerbox a{
+    text-decoration: none;
+    color:black
+}
 .innerbox{
     border: 1px solid black;
     width: 80%;
@@ -16,6 +20,7 @@
     margin-top: 3px;
     cursor: pointer;
     display: flex;
+   /* background-color: #003f7d; */
 }
 .icon{
     font-size: 30px;

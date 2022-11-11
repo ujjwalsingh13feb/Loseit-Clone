@@ -1,16 +1,18 @@
 import { Box, Image } from "@chakra-ui/react";
-import React from "react";
-import data from "../../alldata/db.json";
+import React, { useState } from "react";
 import Styles from "../../css/Profile.module.css";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { BiMessageDetail } from "react-icons/bi";
-
+import Userprofile from "../../components/Userprofile";
+import data from "../../alldata/db.json";
 import Activity from "./Activity";
-const Profile = ({ toggle }) => {
+const Profile = () => {
+  const [profile, setprofile] = useState(true);
+  const [data1, setData] = useState(true);
   const { personimage, userdetails, send, status } = data;
-  console.log("i am a send", send);
+  console.log("i am a data1", data1);
   return (
     <div>
       <Box className={Styles.flex}>
@@ -66,7 +68,7 @@ const Profile = ({ toggle }) => {
                 <span className={Styles.logeed2}>:Today</span>
               </Box>
             </Box>
-            <Box mt="20px" backgroundColor="white">
+          <Box mt="20px" backgroundColor="white">
               {send.map((items) => (
                 <Box key={items.email} mt="10px" fontSize="9pt">
                   <BiMessageDetail />
@@ -79,11 +81,25 @@ const Profile = ({ toggle }) => {
           </Box>
           <Box className={Styles.usertodo}>
             <Box className={Styles.badge}>
-              {status.map((data) => (
-                <Box className={Styles.allbadge} key={data.badges}>{data.badges}</Box>
-              ))}
+              <Box
+                className={Styles.allbadge}
+                onClick={() => setData(data1 === true ? false : true)}
+              >
+                Status
+              </Box>
+              <Box
+                className={Styles.allbadge}
+                onClick={() => {
+                  setprofile(profile === false ? true : false);
+                  setData(false);
+                }}
+              >
+                Profile
+              </Box>
+              <Box className={Styles.allbadge}>Badges</Box>
             </Box>
-            <Activity />
+            {data1 ? <Activity /> : <Userprofile/>}
+            {/* {profile? <Userprofile/>:null} */}
           </Box>
           <Box className={Styles.usercal}></Box>
         </Box>

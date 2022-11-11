@@ -1,0 +1,33 @@
+{
+  "posts": [
+    {
+      "name": "aaa",
+      "url": "https://github.com/Anmoljagota/Anmoljagota.github.io/blob/master/src/utilits/anmol3-removebg-preview%20crop.jpg?raw=true",
+      "personname": "Anmol jagota",
+      "id": 2
+    },
+    {
+      "name": "aaa",
+      "url": "https://github.com/Anmoljagota/Anmoljagota.github.io/blob/master/src/utilits/anmol3-removebg-preview%20crop.jpg?raw=true",
+      "personname": "Anmol jagota",
+      "id": 3
+    },
+    {
+      "name": "aaaaaaa",
+      "url": "https://github.com/Anmoljagota/Anmoljagota.github.io/blob/master/src/utilits/anmol3-removebg-preview%20crop.jpg?raw=true",
+      "personname": "Anmol jagota",
+      "id": 4
+    }
+  ],
+  "userinfo":[
+    {"details":"Location"},
+    {"details":"Email"},
+    {"details":"password"},
+    {"details":"Message"},
+    {"details":"Phone"},
+    {"details":"Bio"},
+    {"details":"Interest"},
+    {"details":"Top 5 Foods"},
+    {"details":"Top 5 Exercise"}
+  ]
+}

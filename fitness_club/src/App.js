@@ -1,19 +1,19 @@
 import Sidebar from "./fitness_clob/components/anmolcomp/Sidebar";
 import "./App.css";
 import AllRoutes from "./fitness_clob/Allroutes/AllRoutes";
-import { useState } from "react";
+import Friends from "./fitness_clob/Pages/anmolpages/Friends";
 import Profile from "./fitness_clob/Pages/anmolpages/Profile";
+function toggle(){
+
+}
 function App() {
-  const [state,setState]=useState(false)
-  function toggleState(){
-    setState(true)
-  }
   return (
     <div className="App">
-      {/* <AllRoutes />
-    {state? <Profile toggle={toggleState}/> :<Sidebar />} */}
+       <AllRoutes />
+    {/* {state? <Profile toggle={toggleState}/> :<Sidebar />} */} 
     <Sidebar/>
     {/* <Profile/> */}
+    {/* <Friends/> */}
     </div>
   );
 }

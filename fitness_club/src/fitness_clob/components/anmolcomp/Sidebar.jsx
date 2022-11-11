@@ -2,34 +2,64 @@ import { Box, Img } from "@chakra-ui/react";
 import data from "../../alldata/sidebar.json";
 import Activity from "../../Pages/anmolpages/Activity";
 import Styles from "../../css/sidebar.module.css";
+import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
+import Profile from "../../Pages/anmolpages/Profile";
 const Sidebar = () => {
-  const { name } = data;
-  console.log("i am name", name);
+  const [active, setActive] = useState(true);
+  const [invitation, setinvitation] = useState(false);
+  const [profile, setprofile] = useState(false);
+  console.log("activa", active);
+  console.log("invitation", invitation);
   return (
     <div style={{ border: "1px solid black", height: "50vw" }}>
       <Box className={Styles.innerbox}>
         <Box style={{ border: "1px solid black", width: "20%" }}>
-          <Box className={Styles.activity}>
+          <Box
+            className={Styles.activity}
+            onClick={() => {
+              setActive(!active);
+              setinvitation(!invitation);
+            }}
+          >
             <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACoUlEQVR42sVUS2gTQRhOqmkb8sK6ze4mm+zO7ibZmQ1RaXuISUGtbZOmSWYLEcQH9uDFgwe9iWehiEWkCB7Ex0kP4kHx4gOvngSLgujBUiJVPIhQFfH1T5hiJKFJvbjwscw//3zzf/9jXK7/9elpZxqwqBPnvY7LxxQl6wWz+98J7eqCbju/GDRcvioIWAbz5q4JTLPYBwgSUvPrQ7WQhp15IPuJSPWNrGYdcBkAeLoiEzMTPmQ7R5FNb8D/mo7pLSBbZoTxxORcX3AwIRu7h2Jm0XC5aps6EqqZMoLDTwDfdJuuwP/7mlyEyw+01NQc2JcRqVwKKlkWac+6hBqh2+HwSxWXrwvK8C6EK4/XCP+ArsQTheN+vxjuKF0n1Vk49CWWHD/h9Q4oOqk8+ouM0Hcyyh8CV1aYYKfiuPU0PWPYtC6pO0vRxNg0kLzlZJ+RVboraaNHwC8KCPHo1m0ft0oqO2LJCSoIVhLkLjRF9lFWcweaIvN024ssyf3hcFpEmN5plgtt80yzSvOqVZqRzOLgRpq7ESkk/zknWgIswnq1sbbpByA9KYoZX1ekZmZGMQi9ycleRbT8bDgyPB7R98zC+gWzq7h0MRCICB0nRsfVvXDgHs/baxmNHgRzBLBlq7ItyiKFy+pSPF/jE9Oe0ExTAySdM2ynziN7CpHt52SNIiBcPQx7X2Geb/NKBwCt02IQ5yyfDpb8VZBzWYyOjMGW1FTRHrjwCm/sT2qicBpeHbPtpIDTDwZ2s4Ry+yA3KTCz/Pi4JDdPx5RqlS+oePq+ZlUexlMFlo7elsIwmWzEQkJqmL0PPKq+ltsJ6fWLmTDrUTmey0vxERus3hY/kHA+lpw8xSX6eF7atYOb77Go+jnaNriHJziwgYfT3YTG9xvU0LksYfIzBAAAAABJRU5ErkJggg==" />
             <span className={Styles.links}>Activity</span>
           </Box>
-          <Box className={Styles.activity}>
+
+          <Box
+            className={Styles.activity}
+            onClick={() => {
+              setActive(!active);
+              setinvitation(!invitation);
+            }}
+          >
             <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACnklEQVR42uWUXUhTYRjHd9dFFH1o2zyVbjvoNiOaYLcSQQiRZEjdRJcW2EUEFZJKF4E3QQTeRNZlQV1U0IVBVleZmoU6bXPu+8vNfbkd93Xm/j3vO4eCmxp01wsP5xw474///3n+76tQ/L+rv/3w1YH2muG/LbavKgy7WcUiimsFyLksMsk4KkLLsGw6iXx2FYVcBgU5hx9vh/DowgE8PKPgNfLkJhJLHkR9doRdFiwtzsBv/Yl7XSZ3RWAuLUHOZ7FWkLGaWCbYQQx3tyCXkfC67yKHmkdfIRZwYtltJeAs/JYdgIV8jlvKJGMYfXqXAC8JuLoB/LQBDDnNOwPLCovFNbIt81696e/ksPeD17AS9hHQsaFwO8tZaQV5UiNnSz1kcNvYBw77+mIAqegSEkEPYn47AS0I2qiHlqnqwHQqjoyUJKUpAktccWhxGh+HbtHGSSQjAcQDLhqKDWHnPAGn4ZufrA6UYmEaRhQZBqZKUyyYMqbwy/P76xNet2s3I0D9885NVAbKFBWmgNmSYiFI8TC9hwjUx4Gfn/WSVQcingWEHCV1zK5nbrwyML0S5XYSIS9vfLmYqnjQhRhlL+JdoPz9RtBeiotvfgLu2bGtwPJJiXgXecNZLOJBJ3+y74jXVoqJYw5BmmzAyqxOwmP+zmHbHr9qxSLCbAYWfqG30zDOQFVhu704/NYpbnOLxc1LFMU9h0Rxf22DUSVo9Y0qbXNrnUZ/TtAYLws64/U6neFOndb4oOP0sXfdbaop98w33L5kiqp1hk5Vg75NaDCeUtY3aVSiWKtUntyrqGlq2ldfb1BvhhHkiqA13lBr9b0EGxS0hseszrceH+lpb3T1dJicap2+W9A0d9F/Z9WioeWorlk8ojmh/Of36h8VB8Hx20/i6AAAAABJRU5ErkJggg==" />
             <span className={Styles.links}>Invitations</span>
           </Box>
+
           <Box style={{ marginTop: "15px" }}>
             Friends
             <Box className={Styles.activity}>
               <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAByklEQVR42rWSPSxDURTHS0zCIMEgJCyaSLSItJS2T16KtojYbGLtIpUQ8bWwSITNQMReLBITE5vNYBE2k48Q7/vjHvdcfY+q92jDefnnnLx37u/8z83zeP4ruNhIZzQ2PF6M8GweED88PD7D/dNLwcKz3wKvrm+hGDkCBUkBQZJBEGV4FSWWBfH9nSgrIKEUFWRFA0XVQNV00DTDGSjKKkAmAZ70CRPWkgWSEUSlfoLpBuiGCxAnIyS1tg5NcweslrOOrCFfZbgBVTp5bGULvAsZ1lw9c8TcKKqeXY9mPeuMuTPBME0XoJ49ZEuzQQixVkQZFGaaKOIMxKnKTYO9DtZ6HoiKQgxCYYQAIW5AOhUhEztLULeYYTU6wfdOd0gAnIG4wuTuEpTPHrPmmvlDdke4FhN1RUx0BcyZFY5AbLLWyM3vAERYGT54zkDs2hTv7HWwJvaTw8gJFyAwSPL4Eho3zllthdMd/gjs2LuAsplTKJmm/+HKGfwmvgCXS1s4riLCJ1JQZPTyQ+nW3mQVx3FlHm9PT2V7INYZDMenQtHB7a5IfL9QBcIDq/5ufsgX6q+1HfqCXD2C27r50ULkD/J9/gDfbDv863gDlwdICgo44/8AAAAASUVORK5CYII=" />
               <span className={Styles.links}>Friend List</span>
             </Box>
-            <Box className={Styles.activity}>
+            <Link to="/profile">
+
+            <Box
+              className={Styles.activity}
+              onClick={() => {
+                setActive(!active);
+                setinvitation(!invitation);
+                setprofile(true);
+              }}
+              >
               <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAq5JREFUeNq0VEtPFEEQ/ma2gWU1QnisIgRfYIzRiyc94E35B8ab8Qfo0eC/8GLijaMXjSEcJXIxmxAPGDy4CZqNARGFBYKsuzvTD6uqezegY4xGJ6npnprqr756dEXOOfzLJ/pvgOV3a+4XFoCLfgt0buy4GKmWwjqL8+MjsnfwILx6f/wtWvm2rmXjvysf1tvAbUBjrKzPykJLDqc2AmsbJqI9kJAysV6atNdkdf+ihrX2Z0DnjHgU8CA7GxWUF+bRaNSRK/SieGECnQOjSODBEmuEqTUZgJooWP5J7OR/DCy9eILK0ivxw5xre7sYnbwNq7qQkJG2PmRjTRswbufQeoZsZEKevn3dJWNyQ2JIsf56HtXlRaQMRsaG3HPutckA1NoEbz5XlDYU+ofBXWC5ILyS06RZh3ZWHKXsjG11FqBJpZq6lUN6HRk6Q7FGknQW1VtE59GTBOg8ywCojc4O2UmiqbpktEs2g2cvoaunKB3Aki+eQkygzMwwS2k3Zp4BKEUJYPzkKGTdUUC+p1/CY4kP98LGHZJPhmCWTCJNs6qsUwlP5agYzQZqmx+xvDCH6sp7AeOCbSy9pDwUkR8Zhxo8IQWBi4l9mtHYdKhTxajvbaKyWMKbuaeobX3hfpHbx2tjewMrs4+QP3YaA5O3oAaGKaq+9qU4ELIL3f629Jz6bwa1nSrFnYPLKTilZEVY69U1fJp5iK3SrK/+vrY5cPWa2uHB3Zuwd26QA+cTz96tv7vWX/pwp124z+4AQ3Xl6vWY1N1T96aQ6kTaIEJolXD5/ZBwYXD4yiIMjlZ/Ek4fKWuKdMOUniFrg4GwaYEFVj8C8yTaN3H4LD1j9N5WYdJFq6srmJ5+/NeD1UmPkFyeuMaF6SZFDyn6aV+k/aE/wPpMssnDic7XvgswAPDL5dFvy5o6AAAAAElFTkSuQmCC" />
               <span className={Styles.links}>VIew My Profile</span>
             </Box>
+              </Link>
             <Box className={Styles.activity}>
               <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUVJREFUeNrUlLFOAzEMhh0JwQSdkKBsZenGwyCegJknYOUteATehI2RAVgQRRXt1I3E5k9ySeNcL7ewtJJrny/3xX/sOyMi9J8/s19A83yLf1w77+A5mJCLsYGJYxPylpHDOsck10+ZcaDwnh0gyXfmOHjJIJ/r8k4r1MAMS7tLjF0BLkHp/iDQLxDZwkJlxcNdpWTLDVpALuSUldmiYleA0nWjQlHSuJIXY1EbRaAZlpxl0g4YV5vJiGTr9MIU585yPL98JF2+2RR18D252qexGgZiaPsPS1Wx2coem0Nbyew1h/Qopc43gbVEbsTjkuuO0u6uJ5CMdplp9vBxiKE6wUmdInP+fjdVr9nscXmD/Bfe+wX8GhO4oXuyg5+vy/nVERZPKAKniC8Qn8EfY6MVVnvQJ+wb9gPbvL2+/O7PB/ZPgAEAgoeZzX/7aNsAAAAASUVORK5CYII=" />
-              <span className={Styles.links}>VIew My Profile</span>
+              <span className={Styles.links}>Add Friend</span>
             </Box>
             <Box style={{ marginTop: "15px" }}>
               Groups
@@ -59,9 +89,13 @@ const Sidebar = () => {
             </Box>
           </Box>
         </Box>
-        <Box className={Styles.active} style={{border:"1px solid black",marginLeft:"10px"}}>
-  <Activity/>
-</Box>
+        <Box
+          className={Styles.active}
+          style={{ border: "1px solid black", marginLeft: "10px" }}
+        >
+          {active ? <Activity /> : null}
+          {invitation ? "hlloo" : null}
+        </Box>
       </Box>
     </div>
   );
