@@ -1,0 +1,99 @@
+.SinglefoodBody {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  width: 400px;
+  max-width: 400px;
+  height: 305px;
+  z-index: 10;
+  border: 2px solid white;
+  overflow-y: scroll;
+  /* background: white; */
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.SinglefoodBody > div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.SinglefoodBody > h1 {
+  font-size: 14px;
+  /* background-color: blue; */
+}
+.SingleFoodMicro {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  /* background-color: aqua; */
+}
+.SingleFoodMicro > div:nth-child(1) {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 380px;
+  /* background-color: hotpink;  */
+}
+.SingleFoodMicro > div:nth-child(1) > input {
+  width: 120px;
+  height: 30px;
+}
+.singleMicroNutri > div:nth-child(1) > button:hover {
+  background-color: royalblue;
+}
+.SingleFoodMicro > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: greenyellow; */
+  width: 380px;
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.singleCalories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+}
+.singleCalories > h4 {
+  font-size: 12px;
+}
+.singleCalories > h1 {
+  font-size: 16px;
+}
+.singleMicroNutri {
+  border-left: 1px solid black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: RED; */
+  width: 130px;
+  margin: auto;
+}
+.singleMicroNutri > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+}
+.singleMicroNutri > div > h4 {
+  font-size: 12px;
+  text-align: left;
+  /* background-color: aqua; */
+}
+.singleMicroNutri > div > h1 {
+  font-size: 12px;
+  text-align: left;
+  margin-left: 10px;
+}

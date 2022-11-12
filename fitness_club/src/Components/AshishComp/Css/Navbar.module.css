@@ -1,0 +1,53 @@
+.NavbarBody {
+  margin: auto;
+  background-image: radial-gradient(
+    circle,
+    #2b43ad,
+    #243ca1,
+    #1c3595,
+    #132f89,
+    #09287d
+  );
+  /* font-weight: bold; */
+  font-size: 14px;
+  color: #fff;
+}
+
+.NavbarBodyLeft > div,
+.NavbarBodyRight > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33px;
+}
+.NavbarBodyLeft > div:nth-child(1) {
+  height: 60px;
+  margin-top: 20px;
+  margin-left: 20px;
+
+  /* background-color: tomato; */
+}
+.NavbarBodyLeft > div > a:hover,
+.NavbarBodyRight > div > a:hover {
+  background-color: rgb(131, 142, 179);
+  transition: 0.5s;
+}
+.NavbarBodyLeft > div:nth-child(1) > a > img {
+  height: 80px;
+  border-radius: 10px;
+}
+.NavbarBodyRight > div:nth-child(3) {
+  border-left: 2px solid white;
+  border-right: 2px solid white;
+}
+
+@media all and (min-width: 0px) and (max-width: 670px) {
+  .NavbarBodyLeft > div:nth-child(1),
+  .NavbarBodyLeft > div:nth-child(6) > a,
+  .NavbarBodyLeft > div:nth-child(7) > a,
+  .NavbarBodyLeft > div:nth-child(8) > a,
+  .NavbarBodyLeft > div:nth-child(9) > a {
+    display: none;
+    /* background-color: yellow; */
+  }
+}
