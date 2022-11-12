@@ -5,11 +5,20 @@
     position: relative;
     width: 92%;
     margin: auto;
-    /* border:1px solid grey; */
+   }
+.c{
+    background-color:  #e2e6e9;
+    background-color: #f4f4f5;
+    font-size: 10pt;
+    font-weight: 650;
+    width: 63%;
+   margin:0px 0px 0px 18px;
+   padding: 8px;
+   color:black;
+   font-size: 8pt;
 }
 .comment{
     background-color: #f4f4f5;
-    /* border: 1px solid black; */
     font-size: 10pt;
     font-weight: 650;
     width: 95%;
@@ -20,12 +29,12 @@
 }
 .loading{
     background-color: #f4f4f5;
+    height: 90px;
 }
 .inputbox{
     margin-top: 5px;
     width: 100%;
-    /* border:1px solid red; */
-}
+  }
 .in{
    
     width: 79%;
@@ -35,13 +44,14 @@
 .name{
     color:#0B6CC4;
     font-size: 10pt;
+    margin-left: 10px;
 }
 .flexall{
     display: flex;
 }
 .fixcolor{
     color:#0B6CC4;
-    /* margin-left: 4px; */
+    margin-left: 10px;
     cursor: pointer;
 }
 .todos{
@@ -50,4 +60,14 @@
     width: 97%;
     margin: auto;
     margin-left: 19px;
+}
+.flex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#f4f4f5 ;
+    margin-left: 30px;
+    margin-top: 20px;
+    /* border: 1px solid black; */
 }

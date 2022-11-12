@@ -20,9 +20,7 @@ const Todo = () => {
   }, []);
   const dispatch = useDispatch();
   const todo = useSelector((todos) => todos.todo.todos);
-  console.log("lllll", todo);
   function postdata(data = {}) {
-    console.log("i am a data", data);
     return axios.post("http://localhost:8080/posts", {
       name: data,
       url: "https://github.com/Anmoljagota/Anmoljagota.github.io/blob/master/src/utilits/anmol3-removebg-preview%20crop.jpg?raw=true",
@@ -108,19 +106,17 @@ const Todo = () => {
               <span>
                 <Person_image />
               </span>{" "}
-              <div className={Styles.name}>Anmol Jagota</div>
-              <div>
-                <span
+              <div className={Styles.name}>Anmol Jagota:<span
                   style={{
                     color: "black",
                     fontSize: "9pt",
-                    marginLeft: "5px",
+                    marginLeft: "10px",
                     marginBottom: "5px",
                   }}
                 >
-                  :{todos.name}
+                  {todos.name}
                 </span>
-                <Box fontSize="10pt" backgroundColor="white" color="grey">
+              <Box fontSize="10pt" backgroundColor="white" color="grey" mt="10px">
                   {moment().calendar()}
                   <span
                     fontSize="9pt"
@@ -144,6 +140,10 @@ const Todo = () => {
                   ) : null}
                 </Box>
               </div>
+              {/* <div> */}
+                
+               
+              {/* </div> */}
             </div>
           </div>
         ))}

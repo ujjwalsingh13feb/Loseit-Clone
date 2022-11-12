@@ -4,11 +4,12 @@ import Activity from "../../Pages/anmolpages/Activity";
 import Styles from "../../css/sidebar.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
-import Profile from "../../Pages/anmolpages/Profile";
+import Friends from "../../Pages/anmolpages/Friends";
 const Sidebar = () => {
   const [active, setActive] = useState(true);
   const [invitation, setinvitation] = useState(false);
   const [profile, setprofile] = useState(false);
+
   console.log("activa", active);
   console.log("invitation", invitation);
   return (
@@ -57,7 +58,7 @@ const Sidebar = () => {
               <span className={Styles.links}>VIew My Profile</span>
             </Box>
               </Link>
-            <Box className={Styles.activity}>
+            <Box className={Styles.activity} onClick={()=>setActive(false)}>
               <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUVJREFUeNrUlLFOAzEMhh0JwQSdkKBsZenGwyCegJknYOUteATehI2RAVgQRRXt1I3E5k9ySeNcL7ewtJJrny/3xX/sOyMi9J8/s19A83yLf1w77+A5mJCLsYGJYxPylpHDOsck10+ZcaDwnh0gyXfmOHjJIJ/r8k4r1MAMS7tLjF0BLkHp/iDQLxDZwkJlxcNdpWTLDVpALuSUldmiYleA0nWjQlHSuJIXY1EbRaAZlpxl0g4YV5vJiGTr9MIU585yPL98JF2+2RR18D252qexGgZiaPsPS1Wx2coem0Nbyew1h/Qopc43gbVEbsTjkuuO0u6uJ5CMdplp9vBxiKE6wUmdInP+fjdVr9nscXmD/Bfe+wX8GhO4oXuyg5+vy/nVERZPKAKniC8Qn8EfY6MVVnvQJ+wb9gPbvL2+/O7PB/ZPgAEAgoeZzX/7aNsAAAAASUVORK5CYII=" />
               <span className={Styles.links}>Add Friend</span>
             </Box>
@@ -93,8 +94,8 @@ const Sidebar = () => {
           className={Styles.active}
           style={{ border: "1px solid black", marginLeft: "10px" }}
         >
-          {active ? <Activity /> : null}
-          {invitation ? "hlloo" : null}
+          {active ? <Activity /> : <Friends/>}
+          {/* {invitation ? "hlloo" : null} */}
         </Box>
       </Box>
     </div>

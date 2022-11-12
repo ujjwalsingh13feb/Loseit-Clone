@@ -1,25 +1,21 @@
 .flex {
   display: flex;
-  /* border:1px solid black; */
   height: 50vw;
 }
 .innerdiv {
-  /* border: 1px solid black; */
   width: 75%;
   height: 100%;
   margin: auto;
   display: flex;
 }
 .userdata {
-  /* border: 1px solid red; */
-  width: 18%;
+  
+width: 18%;
 }
 .usertodo {
-  /* border: 1px solid black; */
   width: 40%;
 }
 .usercal {
-  /* border: 1px solid blue; */
   width: 40%;
 }
 .community {
@@ -85,6 +81,7 @@
 .flexall {
   display: flex;
   margin-left: 20px;
+ 
  }
 .in {
   width: 70%;
@@ -93,18 +90,18 @@
 }
 .inn{
   margin: 0px 0px 0px 20px;
+  width: 70%;
+  padding: 6px;
 }
 .color {
   color: #0f6cc4;
 }
 .badge {
   display: flex;
-  /* border: 1px solid black; */
   width: 30%;
   padding: 4px 10px 4px 10px;
   width: 50%;
   margin-left: 20px;
-  /* justify-content: space-between; */
   align-items: center;
   font-size: 8pt;
   cursor: pointer;
@@ -152,4 +149,11 @@
     border: none;
     margin-left: 6px;
     padding: 8px;
+}
+.names{
+  font-family: "Segoe UI", "Lucida Grande", "Tahoma", "Helvetica";
+    font-size: 9pt;
+    color: #003dc8;
+    font-weight: bold;
+    margin-top: 20px;
 }
