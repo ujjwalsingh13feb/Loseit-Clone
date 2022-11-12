@@ -53,9 +53,9 @@ const Login = () => {
 
 
     useEffect(() => {
-        if (isAuth) {
-            navigate("/Navbar")
-        }
+        // if (isAuth) {
+        //     // navigate("/")
+        // }
     }, [isAuth])
     return (
         <>
