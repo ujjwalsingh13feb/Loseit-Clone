@@ -25,7 +25,7 @@ import {
 import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
 
-export default function Snacks() {
+export default function Snacks({ snacksCalories }) {
     const [open, setOpen] = useState(false);
     const [storeFood, setStoreFood] = useState({});
     const [value, setValue] = useState("");
@@ -79,12 +79,6 @@ export default function Snacks() {
 
     //   console.log("open:", open);
 
-    // Setting payload inside data base
-    const handleServerData = (payloadToServer) => {
-        // console.log('payloadToServer:', payloadToServer)
-        dispatch(postsnacks(payloadToServer));
-    };
-
     const handleDeleteItem = (itemDeleteFromServer) => {
         // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deletesnacks(itemDeleteFromServer));
@@ -99,6 +93,16 @@ export default function Snacks() {
             setTotalCalories(result.toFixed(2));
         }
     }, [snacks]);
+
+    snacksCalories(totalCalories);
+
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        // console.log('payloadToServer:', payloadToServer)
+        dispatch(postsnacks(payloadToServer));
+    };
+
+
     return (
         <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
@@ -177,8 +181,8 @@ export default function Snacks() {
                             <Thead>
                                 <Tr>
                                     <Th>Food</Th>
-                                    <Th  color="black" textAlign="center">Quantity</Th>
-                                    <Th  color="black" textAlign="center" isNumeric>
+                                    <Th color="black" textAlign="center">Quantity</Th>
+                                    <Th color="black" textAlign="center" isNumeric>
                                         Calories
                                     </Th>
                                     <Th w="10px"></Th>

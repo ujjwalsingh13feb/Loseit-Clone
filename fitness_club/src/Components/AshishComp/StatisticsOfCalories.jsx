@@ -1,9 +1,20 @@
 import { Box, Heading, Text, useStatStyles } from "@chakra-ui/react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import styles from "./Css/StatisticsOfCalories.module.css";
 export default function StatisticsOfCalories() {
 
-    const [progress, setProgress] = useState(80);
+
+    const { totalCaloriesFoods, totalCaloriesExercises, totalCaloriesDifference, totalCaloriesDailyBudget } = useSelector((store) => store.totalcalories)
+    // console.log('totalCaloriesExercises:', totalCaloriesExercises);
+    // console.log('totalCaloriesFoods:', totalCaloriesFoods);
+    let count = 0;
+    if (totalCaloriesFoods > 0 && totalCaloriesExercises > 0) {
+        count = ((+totalCaloriesDifference) / (+totalCaloriesFoods)) * 100;
+    }
+    console.log('count:', count);
+    const [progress, setProgress] = useState(count);
+
     return (
         <Box m="auto" h="246px" maxW="338px" bg="#F7F8F9" >
             <Box>
@@ -32,21 +43,21 @@ export default function StatisticsOfCalories() {
                     </Box>
                     <Box>
                         <Text>Food calories consumed</Text>
-                        <Text>-</Text>
+                        <Text>{totalCaloriesFoods}</Text>
                     </Box>
                     <Box>
                         <Text>Exercise calories burned</Text>
-                        <Text>-</Text>
+                        <Text>{totalCaloriesExercises}</Text>
                     </Box>
                     <Box>
                         <Text>Net calories so far today</Text>
-                        <Text>-</Text>
+                        <Text>{totalCaloriesDifference}</Text>
                     </Box>
                 </Box>
-                <Box h="37px" bg="" className={styles.underdailybudget}>
+                <Box h="37px" bg="" m="auto" className={styles.underdailybudget}>
                     <Text>I was
                         <span>
-                            {` ${2555} `}
+                            {` ${totalCaloriesDailyBudget} `}
                         </span>
                         calories under my daily budget
                     </Text>

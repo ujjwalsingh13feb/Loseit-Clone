@@ -15,7 +15,7 @@ import {
 export const getdinner = () => async (dispatch) => {
     dispatch({ type: GET_DINNER_LOADING });
     try {
-        let response = await axios.get(`http://localhost:3801/dinner`); // FOR MONGODB
+        let response = await axios.get(`https://fitness-club-server.onrender.com/dinner`); // FOR MONGODB
         let data = response.data;
         dispatch({ type: GET_DINNER_SUCCESS, payload: data });
     } catch (error) {
@@ -28,7 +28,7 @@ export const postdinner = (payload) => async (dispatch) => {
     console.log('payload:', payload)
     dispatch({ type: POST_DINNER_LOADING });
     try {
-        let response = await axios.post(`http://localhost:3801/dinner`, payload); // FOR MONGODB
+        let response = await axios.post(`https://fitness-club-server.onrender.com/dinner`, payload); // FOR MONGODB
         let data = response.data;
         dispatch({ type: POST_DINNER_SUCCESS, payload: data });
     } catch (error) {
@@ -43,7 +43,7 @@ export const deletedinner = (payload) => async (dispatch) => {
     dispatch({ type: DELETE_DINNER_LOADING });
     try {
         let response = await axios.delete(
-            `http://localhost:3801/dinner/${payload.id}`
+            `https://fitness-club-server.onrender.com/dinner/${payload.id}`
         );
         dispatch({ type: DELETE_DINNER_SUCCESS, payload });
     } catch (error) {

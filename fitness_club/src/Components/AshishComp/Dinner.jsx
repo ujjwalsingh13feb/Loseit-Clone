@@ -26,7 +26,7 @@ import {
 import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
 
-export default function Dinners() {
+export default function Dinners({ dinnerCalories }) {
     const [open, setOpen] = useState(false);
     const [storeFood, setStoreFood] = useState({});
     const [value, setValue] = useState("");
@@ -80,11 +80,6 @@ export default function Dinners() {
 
     //   console.log("open:", open);
 
-    // Setting payload inside data base
-    const handleServerData = (payloadToServer) => {
-        // console.log('payloadToServer:', payloadToServer)
-        dispatch(postdinner(payloadToServer));
-    };
 
     const handleDeleteItem = (itemDeleteFromServer) => {
         // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
@@ -100,6 +95,17 @@ export default function Dinners() {
             setTotalCalories(result.toFixed(2));
         }
     }, [dinners]);
+
+    dinnerCalories(totalCalories);
+
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        // console.log('payloadToServer:', payloadToServer)
+        dispatch(postdinner(payloadToServer));
+    };
+
+
+
     return (
         <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>

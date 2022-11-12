@@ -27,7 +27,7 @@ import {
 import DisplayFromServerExercise from "./DisplayFromServerExercise";
 import SingleExercise from "./SingleExercise";
 
-export default function Exercise() {
+export default function Exercise({ exerciseCalories }) {
     const [open, setOpen] = useState(false);
     const [storeExercise, setStoreFood] = useState({});
     const [value, setValue] = useState("");
@@ -96,12 +96,6 @@ export default function Exercise() {
 
     //   console.log("open:", open);
 
-    // Setting payload inside data base
-    const handleServerData = (payloadToServer) => {
-        console.log("payloadToServer:", payloadToServer);
-        dispatch(postexercise(payloadToServer));
-    };
-
     const handleDeleteItem = (itemDeleteFromServer) => {
         console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deleteexercise(itemDeleteFromServer));
@@ -116,6 +110,15 @@ export default function Exercise() {
             setTotalCalories(result.toFixed(2));
         }
     }, [exercises]);
+
+    exerciseCalories(totalCalories);
+
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        console.log("payloadToServer:", payloadToServer);
+        dispatch(postexercise(payloadToServer));
+    };
+
 
     return (
         <Box className={styles.foodLog}>

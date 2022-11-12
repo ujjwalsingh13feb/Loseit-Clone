@@ -23,15 +23,11 @@ import {
     getbreakfast,
     postbreakfast,
 } from "../../Redux/AshsihRedux/breakfast/breakfast.action";
-import {
-    totalcalories,
-    totalcaloriesadd,
-    totalcaloriessub,
-} from "../../Redux/AshsihRedux/TotalCalories/TotalCalories.action";
 import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
 
-export default function Breakfast() {
+export default function Breakfast({ breakfastCalories }) {
+
     const [open, setOpen] = useState(false);
     const [storeFood, setStoreFood] = useState({});
     const [value, setValue] = useState("");
@@ -41,8 +37,6 @@ export default function Breakfast() {
     const dispatch = useDispatch();
     const { breakfasts } = useSelector((store) => store.breakfast);
     // console.log("breakfasts:", breakfasts);
-    const { totalCaloriesCount } = useSelector((store) => store.totalcalories);
-    console.log("totalCaloriesCount:", totalCaloriesCount);
 
     const handleChange = (e) => {
         setValue(e.target.value);
@@ -90,7 +84,6 @@ export default function Breakfast() {
     const handleDeleteItem = (itemDeleteFromServer) => {
         // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deletebreakfast(itemDeleteFromServer));
-        dispatch(totalcaloriessub(itemDeleteFromServer.Calories));
     };
 
     useEffect(() => {
@@ -100,16 +93,18 @@ export default function Breakfast() {
             breakfasts.forEach((item) => (result += item.Calories));
             // console.log("result:", result);
             setTotalCalories(result.toFixed(2));
+            // dispatch(totalcaloriesadd(totalCalories));
         }
     }, [breakfasts]);
-
+    
+    breakfastCalories(totalCalories);
+  
     // Setting payload inside data base
     const handleServerData = (payloadToServer) => {
         // console.log('payloadToServer:', payloadToServer)
         dispatch(postbreakfast(payloadToServer));
-        dispatch(totalcaloriesadd(totalCalories));
-    };
 
+    };
     return (
         <Box className={styles.foodLog}>
             <SimpleGrid column={{ base: 1, sm: 2, md: 2 }}>
@@ -142,7 +137,7 @@ export default function Breakfast() {
                                 />
                             ) : (
                                 <Box className={styles.FoodScroll}>
-                                    <Heading as="h1">All Foods</Heading>
+                                    {/* <Heading as="h1">All Foods</Heading> */}
                                     {post &&
                                         post.map((ele) => (
                                             <Box key={ele.foodId}>

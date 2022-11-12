@@ -22,8 +22,99 @@ import styles from "./Css/AddFood.module.css";
 import { GiKnifeFork } from "react-icons/gi";
 import StatisticsOfCalories from "../../Components/AshishComp/StatisticsOfCalories";
 import WeightUpdate from "../../Components/AshishComp/WeightUpdate";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    totalcaloriesdailybudget,
+    totalcaloriesdifference,
+    totalcaloriesfood,
+} from "../../Redux/AshsihRedux/TotalCalories/TotalCalories.action";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const getDataFromSignUp = async () => {
+    let res = await axios.get(`https://fitness-club-server.onrender.com/signup`);
+    let data = res.data;
+    console.log('data:', data);
+    // return 0;
+
+    if (data[data.length - 1].caloriesTotal !== undefined) {
+        return (data[data.length - 1].caloriesTotal).toFixed(2);
+    }
+    return 0;
+
+    // {
+    //     "email": "ujjawal@gmail.com",
+    //     "password": "ujjawal123",
+    //     "age": 24,
+    //     "location": "delhi",
+    //     "caloriesTotal": 1900,
+    //     "id": 4
+    //   },
+}
 
 export default function AddFood() {
+    const [storeBreakfast, setStoreBreakfast] = useState(0);
+    const [storeLunch, setStoreLunch] = useState(0);
+    const [storeDinner, setStoreDinner] = useState(0);
+    const [storeSnacks, setStoreSnacks] = useState(0);
+    const [put, setPut] = useState(0);
+    const [difference, setDifference] = useState(0);
+    const [budget, setBudget] = useState(0);
+    const [under, setUnder] = useState(0);
+
+    const { totalCaloriesFoods, totalCaloriesExercises } = useSelector(
+        (store) => store.totalcalories
+    );
+    const dispatch = useDispatch();
+
+    let sumOfCalories = 0;
+
+    const breakfastCalories = (TotalCalories) => {
+        console.log("TotalCalories:", TotalCalories);
+        setStoreBreakfast(TotalCalories);
+    };
+
+    const lunchCalories = (TotalCalories) => {
+        console.log("TotalCalories:", TotalCalories);
+        setStoreLunch(TotalCalories);
+    };
+
+    const dinnerCalories = (TotalCalories) => {
+        console.log("TotalCalories:", TotalCalories);
+        setStoreDinner(TotalCalories);
+    };
+
+    const snacksCalories = (TotalCalories) => {
+        // console.log("TotalCalories:", TotalCalories);
+        setStoreSnacks(TotalCalories);
+    };
+
+    useEffect(() => {
+        sumOfCalories +=
+            +storeBreakfast + +storeLunch + +storeDinner + +storeSnacks;
+        // console.log("sumOfCalories:", sumOfCalories);
+        setPut(sumOfCalories);
+        dispatch(totalcaloriesfood(sumOfCalories));
+
+        setDifference((totalCaloriesFoods - totalCaloriesExercises).toFixed(2));
+
+        dispatch(totalcaloriesdifference(difference));
+
+        //get data from sign up
+        let result = getDataFromSignUp().then((res) => {
+            console.log("res:", res)
+            setBudget(res);
+        });
+
+        dispatch(totalcaloriesdailybudget(budget));
+        // console.log('result------------------------------------------------------:', result)
+
+        setUnder((Number(budget) - Number(difference)).toFixed(2));
+
+    }, [storeBreakfast, storeLunch, storeDinner, storeSnacks, difference, budget, under, put]);
+
+
+
     return (
         <Box mt="90px" maxW="1348px" bg="" className={styles.addfoodBody}>
             <Box maxW="968px">
@@ -51,7 +142,12 @@ export default function AddFood() {
                     colSpan={{ base: 5, sm: 5, md: 3 }}
                     bg="white"
                 >
-                    <Box maxW="590px" color="#808080" fontSize="11px" className={styles.addfoodTotalCalories}>
+                    <Box
+                        maxW="590px"
+                        color="#808080"
+                        fontSize="11px"
+                        className={styles.addfoodTotalCalories}
+                    >
                         <TableContainer bg="#edeff2" padding="-15px">
                             <Table variant="" size="sm">
                                 <Thead>
@@ -61,29 +157,31 @@ export default function AddFood() {
                                         <Th textAlign="center" isNumeric>
                                             Exercise
                                         </Th>
-                                        <Th textAlign="center" >Net</Th>
-                                        <Th textAlign="center" >Under</Th>
+                                        <Th textAlign="center">Net</Th>
+                                        <Th textAlign="center">Under</Th>
                                     </Tr>
                                 </Thead>
                                 {/* Mapping happen over here */}
                                 <Tbody textAlign="center">
                                     <Tr>
-                                        <Td textAlign="center">-</Td>
-                                        <Td textAlign="center">-</Td>
-                                        <Td textAlign="center" isNumeric>-</Td>
-                                        <Td textAlign="center">-</Td>
-                                        <Td textAlign="center" >
-                                            <Text bg="#00b651">-</Text>
+                                        <Td textAlign="center">{budget}</Td>
+                                        <Td textAlign="center">{put}</Td>
+                                        <Td textAlign="center" isNumeric>
+                                            {totalCaloriesExercises}
+                                        </Td>
+                                        <Td textAlign="center">{difference}</Td>
+                                        <Td textAlign="center">
+                                            <Text color="black" fontWeight="bold" bg="#00b651">{under}</Text>
                                         </Td>
                                     </Tr>
                                 </Tbody>
                             </Table>
                         </TableContainer>
                     </Box>
-                    <Breakfast />
-                    <Lunch />
-                    <Dinner />
-                    <Snacks />
+                    <Breakfast breakfastCalories={breakfastCalories} />
+                    <Lunch lunchCalories={lunchCalories} />
+                    <Dinner dinnerCalories={dinnerCalories} />
+                    <Snacks snacksCalories={snacksCalories} />
                 </GridItem>
                 <GridItem
                     color="#0B6CC4"
@@ -92,9 +190,8 @@ export default function AddFood() {
                     bg=""
                     width="340px"
                 >
-            
-                    <StatisticsOfCalories/>
-                    <WeightUpdate/>
+                    <StatisticsOfCalories />
+                    <WeightUpdate />
                 </GridItem>
             </Grid>
         </Box>
