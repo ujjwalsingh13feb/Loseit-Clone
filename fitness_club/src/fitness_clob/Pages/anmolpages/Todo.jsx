@@ -21,7 +21,7 @@ const Todo = () => {
   const dispatch = useDispatch();
   const todo = useSelector((todos) => todos.todo.todos);
   function postdata(data = {}) {
-    return axios.post("http://localhost:8080/posts", {
+    return axios.post("https://fitness-club-server.onrender.com/comments", {
       name: data,
       url: "https://github.com/Anmoljagota/Anmoljagota.github.io/blob/master/src/utilits/anmol3-removebg-preview%20crop.jpg?raw=true",
       personname: "Anmol jagota",
@@ -31,14 +31,14 @@ const Todo = () => {
     setTimeout(() => {
       setloading(true);
     }, 2000);
-    let response = await axios.get("http://localhost:8080/posts");
+    let response = await axios.get("https://fitness-club-server.onrender.com/comments");
     let data = await response.data;
     setData(data);
   }
   function deletedata(id) {
     console.log("i am id", id);
     axios
-      .delete(`http://localhost:8080/posts/${id}`)
+      .delete(`https://fitness-club-server.onrender.com/comments/${id}`)
       .then((res) => console.log("data deleted successfully"));
   }
 

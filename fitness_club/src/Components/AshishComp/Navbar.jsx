@@ -2,13 +2,19 @@ import { Avatar, Box, Grid, GridItem, Image } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import styles from "./Css/Navbar.module.css";
 import { AiFillSetting } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 const links = [
     { path: "/addfood", title: "Add Food" },
     { path: "/addexercise", title: "Add Exercise" },
 ];
 
+
 export default function Navbar() {
+
+    const { isAuth, isLoading, error } = useSelector((state) => state.AuthReducer)
+
+
     return (
         <Box
             bg=""
@@ -48,7 +54,7 @@ export default function Navbar() {
                             <NavLink to="/addexercise">Exercise</NavLink>
                         </GridItem>
                         <GridItem colSpan={{ base: 3, sm: 3, md: 1 }} bg="">
-                            <NavLink to="#">Community</NavLink>
+                            <NavLink to="/sidebar">Community</NavLink>
                         </GridItem>
                         <GridItem colSpan={{ base: 2, sm: 2, md: 1 }} bg="">
                             <NavLink to="#">Insights</NavLink>

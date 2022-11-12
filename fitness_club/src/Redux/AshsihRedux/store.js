@@ -5,6 +5,7 @@ import {
     combineReducers,
 } from "redux";
 import thunk from "redux-thunk";
+import { Todoreducer } from "../../fitness_clob/redux/activitytodo/activity.redux";
 import { AuthReducer } from "../LoginRedux/AuthReducer";
 import { breakfastReducer } from "./breakfast/breakfast.reducer";
 import { dinnerReducer } from "./dinner/dinner.reducer";
@@ -23,6 +24,9 @@ const rootReducer = combineReducers({
     snack: snacksReducer,
     exercise: exerciseReducer,
     totalcalories: totalCaloriesReducer,
+
+
+    todo:Todoreducer,
 });
 
 const createComposer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
