@@ -2,6 +2,8 @@ import { Box, Image } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Styles from "../../css/Profile.module.css";
 import { TiArrowUpThick } from "react-icons/ti";
+import StatisticsOfCalories from "../../../Components/AshishComp/StatisticsOfCalories"
+import WeightUpdate from "../../../Components/AshishComp/WeightUpdate";
 import { TiArrowDownThick } from "react-icons/ti";
 import { AiOutlineFileDone } from "react-icons/ai";
 import { BiMessageDetail } from "react-icons/bi";
@@ -15,7 +17,7 @@ const Profile = () => {
   console.log("i am a data1", data1);
   return (
     <div>
-      <Box className={Styles.flex}>
+      <Box className={Styles.flex} mt="50px">
         <Box className={Styles.innerdiv}>
           <Box className={Styles.userdata}>
             <Box
@@ -23,6 +25,7 @@ const Profile = () => {
               justifyContent="center"
               alignItems="center"
               backgroundColor="white"
+              
             >
               <Box
                 height="15px"
@@ -83,14 +86,14 @@ const Profile = () => {
             <Box className={Styles.badge}>
               <Box
                 className={Styles.allbadge}
-                onClick={() => setData(data1 === true ? false : true)}
+                onClick={() => setData(true)}
               >
                 Status
               </Box>
               <Box
                 className={Styles.allbadge}
                 onClick={() => {
-                  setprofile(profile === false ? true : false);
+                  // setprofile(profile === false ? true : false);
                   setData(false);
                 }}
               >
@@ -101,7 +104,14 @@ const Profile = () => {
             {data1 ? <Activity /> : <Userprofile/>}
             {/* {profile? <Userprofile/>:null} */}
           </Box>
-          <Box className={Styles.usercal}></Box>
+          {data1===true?
+          <Box className={Styles.usercal}>
+            <StatisticsOfCalories/>
+         
+         <Box ml="40px"><WeightUpdate/>
+         </Box> 
+          </Box>
+          :null}
         </Box>
       </Box>
     </div>

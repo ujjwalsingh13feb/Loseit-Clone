@@ -13,9 +13,9 @@ const Sidebar = () => {
   console.log("activa", active);
   console.log("invitation", invitation);
   return (
-    <div style={{ border: "1px solid black", height: "50vw" }}>
+    <div style={{  height: "50vw" ,marginTop:"50px"}}>
       <Box className={Styles.innerbox}>
-        <Box style={{ border: "1px solid black", width: "20%" }}>
+        <Box style={{  width: "20%" }}>
           <Box
             className={Styles.activity}
             onClick={() => {
