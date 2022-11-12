@@ -5,11 +5,15 @@ import star from "./star.png";
 import logo from ".//..//../Images/FitnessClub.png";
 import madel from ".//..//../Images/madale.svg";
 
+let sum=0
+let Weight_loss=0
 
 let Total_H= JSON.parse(localStorage.getItem("weightH"));
 let Total_W = JSON.parse(localStorage.getItem("weightU"));
-const sum = (66.5+ 13.8*(+Total_W.curWeight)+5*(+Total_H.height)-6.8*(Total_H.age))
-const Weight_loss = Total_W.curWeight-Total_W.goalWeight
+console.log(Total_H)
+console.log(Total_W)
+
+
 
 //import { SiTrustpilot } from "react-icons/si";
 //FcCalendar FcRating
@@ -26,12 +30,14 @@ const [date,setDate] = useState("")
     }
     useEffect(() => {
       handleContinue()
-      return () => {
-        
-      }
-    }, [date])
+
+      if(Total_W !=null && Total_H !=null){
+        sum = (66.5+ 13.8*(+Total_W.curWeight)+5*(+Total_H.height)-6.8*(Total_H.age))
+        Weight_loss = Total_W.curWeight-Total_W.goalWeight
+     }
+    }, [date,sum,Weight_loss])
     
-     
+    
 
 
   return (

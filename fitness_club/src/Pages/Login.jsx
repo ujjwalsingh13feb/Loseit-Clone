@@ -4,26 +4,57 @@ import FitnessClubRem from "../Components/HomePage/images/FitnessClubRem.png"
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../Redux/LoginRedux/Action'
+import axios from 'axios'
 
 const Login = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { isAuth, isLoading, error } = useSelector((state) => state.AuthReducer)
-
-    const handleSubmit = () => {
+    console.log(isAuth)
+    const handleSubmit = async() => {
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
+
+
+        let res=await axios.get("https://fitness-club-server.onrender.com/signup")
+        let data=res.data
+        //console.log(data)
+
+        var flag =false
+        let array=[]
+
+
+        let update_data=data.filter((e)=>{
+            if(e.email===email && e.password === password){
+                flag=true
+                array.push(e)
+            }
+        })
+        console.log(array,"array")
+        console.log(flag,"falg")
+        console.log(update_data,"update")
+
+    if(flag){
         dispatch(login(
-            {
-                email,
-                password
-            }))
+            
+           array
+            
+            ))
+    }else{
+        alert("Invalid credentials")
     }
+
+        
+
+            
+    }
+
+
 
     useEffect(() => {
         if (isAuth) {
-            navigate("/")
+            navigate("/Navbar")
         }
     }, [isAuth])
     return (

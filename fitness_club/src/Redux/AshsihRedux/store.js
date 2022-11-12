@@ -6,7 +6,6 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import { AuthReducer } from "../LoginRedux/AuthReducer";
-import { Reducer } from "../LoginRedux/Reducer";
 import { breakfastReducer } from "./breakfast/breakfast.reducer";
 import { dinnerReducer } from "./dinner/dinner.reducer";
 import { exerciseReducer } from "./exercise/exercise.reducer";
@@ -18,7 +17,6 @@ const rootReducer = combineReducers({
     breakfast: breakfastReducer,
 
     AuthReducer:AuthReducer,
-    Reducer:Reducer,
     //  hello i am conflict 
     dinner: dinnerReducer,
     lunch: lunchReducer,
