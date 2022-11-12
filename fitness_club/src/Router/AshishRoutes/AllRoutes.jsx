@@ -11,6 +11,7 @@ import AddFood from "../../Pages/AshishPages/AddFood";
 export default function AllRoutesAshish() {
     return (
         <Routes>
+            <Route path="/" element={<AddFood />} />
             <Route path="/addfood" element={<AddFood />} />
             <Route path="/addexercise" element={<AddExercise />} />
             <Route path="/singlefood/:id" element={<SingleFood />} />

@@ -1,25 +1,43 @@
-import { TOTAL_CALORIES_ADD, TOTAL_CALORIES_SUB } from "./TotalCalories.type";
+import { TOTAL_CALORIES_FOOD, TOTAL_CALORIES_EXERCISE, TOTAL_CALORIES_DIFFERENCE, TOTAL_CALORIES_DAILY_BUDGET } from "./TotalCalories.type";
 
 const initialState = {
-    totalCaloriesCount: 0
-}
+    totalCaloriesFoods: 0,
+    totalCaloriesExercises: 0,
+    totalCaloriesDifference: 0,
+    totalCaloriesDailyBudget: 0,
+};
 
-export const totalCaloriesReducer = (state = initialState, { type, payload }) => {
+export const totalCaloriesReducer = (
+    state = initialState,
+    { type, payload }
+) => {
     switch (type) {
-        case TOTAL_CALORIES_ADD: {
+        case TOTAL_CALORIES_FOOD: {
             return {
                 ...state,
-                totalCaloriesCount: state.totalCaloriesCount + Number(payload)
+                totalCaloriesFoods: payload,
             };
         }
-        case TOTAL_CALORIES_SUB: {
+        case TOTAL_CALORIES_EXERCISE: {
             return {
                 ...state,
-                totalCaloriesCount: state.totalCaloriesCount - Number(payload)
+                totalCaloriesExercises: payload,
+            };
+        }
+        case TOTAL_CALORIES_DIFFERENCE: {
+            return {
+                ...state,
+                totalCaloriesDifference: payload,
+            };
+        }
+        case TOTAL_CALORIES_DAILY_BUDGET: {
+            return {
+                ...state,
+                totalCaloriesDailyBudget: payload,
             };
         }
         default: {
-            return state
+            return state;
         }
     }
-}
+};

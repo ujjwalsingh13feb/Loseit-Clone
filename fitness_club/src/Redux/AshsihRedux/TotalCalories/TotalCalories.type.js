@@ -1,2 +1,4 @@
-export const TOTAL_CALORIES_ADD = "total/calories/add";
-export const TOTAL_CALORIES_SUB = "total/calories/sub";
+export const TOTAL_CALORIES_FOOD = "total/calories/food";
+export const TOTAL_CALORIES_EXERCISE = "total/calories/exercise";
+export const TOTAL_CALORIES_DIFFERENCE = "total/calories/difference";
+export const TOTAL_CALORIES_DAILY_BUDGET = "total/calories/daily/budget";

@@ -25,7 +25,7 @@ import {
 import DisplayFromServer from "./DisplayFromServer";
 import SingleFood from "./SingleFood";
 
-export default function Lunch() {
+export default function Lunch({ lunchCalories }) {
     const [open, setOpen] = useState(false);
     const [storeFood, setStoreFood] = useState({});
     const [value, setValue] = useState("");
@@ -79,12 +79,6 @@ export default function Lunch() {
 
     //   console.log("open:", open);
 
-    // Setting payload inside data base
-    const handleServerData = (payloadToServer) => {
-        // console.log('payloadToServer:', payloadToServer)
-        dispatch(postlunch(payloadToServer));
-    };
-
     const handleDeleteItem = (itemDeleteFromServer) => {
         // console.log("itemDeleteFromServerId:", itemDeleteFromServer);
         dispatch(deletelunch(itemDeleteFromServer));
@@ -99,6 +93,14 @@ export default function Lunch() {
             setTotalCalories(result.toFixed(2));
         }
     }, [lunchs]);
+
+    lunchCalories(totalCalories);
+
+    // Setting payload inside data base
+    const handleServerData = (payloadToServer) => {
+        // console.log('payloadToServer:', payloadToServer)
+        dispatch(postlunch(payloadToServer));
+    };
 
     return (
         <Box className={styles.foodLog}>
