@@ -1,4 +1,4 @@
-# _LOSEIT_ (Clone)
+# _FITNESS CLUB_ 
 
 
 **Fitness club is an e-commerce website which provides diet plans as well. In this project we have cloned some important features of the website from sign-up to creating diet plan for yourself with decent UI.**
