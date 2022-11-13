@@ -134,7 +134,7 @@ export default function Snacks({ snacksCalories }) {
                                 />
                             ) : (
                                 <Box className={styles.FoodScroll}>
-                                    <Heading as="h1">All Foods</Heading>
+                                    {/* <Heading as="h1">All Foods</Heading> */}
                                     {post &&
                                         post.map((ele) => (
                                             <Box key={ele.foodId}>
@@ -151,7 +151,7 @@ export default function Snacks({ snacksCalories }) {
                                         ))}
                                 </Box>
                             )}
-                            <Heading as="h1">All Foods</Heading>
+                            {/* <Heading as="h1">All Foods</Heading> */}
                         </Box>
                     ) : (
                         <Box

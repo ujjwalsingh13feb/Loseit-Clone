@@ -6,7 +6,7 @@ export default function FooterInside() {
         <Box className={styles.FooterBody}>
             <SimpleGrid  columns={{ base:4,sm: 4, md: 8 }} spacing="2px">
                 <Box bg="">
-                    <Text>Jobs</Text>
+                    <Text>Jobs </Text>
                 </Box>
                 <Box bg="" >
                     <Text>Support</Text>

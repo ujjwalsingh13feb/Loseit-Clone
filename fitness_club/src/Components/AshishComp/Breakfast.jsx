@@ -154,7 +154,7 @@ export default function Breakfast({ breakfastCalories }) {
                                         ))}
                                 </Box>
                             )}
-                            <Heading as="h1">All Foods</Heading>
+                            {/* <Heading as="h1">All Foods</Heading> */}
                         </Box>
                     ) : (
                         <Box

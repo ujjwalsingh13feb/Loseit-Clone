@@ -134,7 +134,7 @@ export default function Exercise({ exerciseCalories }) {
                         type="text"
                         value={value}
                         onChange={handleChange}
-                        placeholder="Search & Add Food"
+                        placeholder="Search & Add Exercise"
                     />
                 </Box>
             </SimpleGrid>
@@ -151,7 +151,7 @@ export default function Exercise({ exerciseCalories }) {
                                 />
                             ) : (
                                 <Box className={styles.FoodScroll}>
-                                    <Heading as="h1">All Foods</Heading>
+                                    {/* <Heading as="h1">All Foods</Heading> */}
                                     {post &&
                                         post.map((ele) => (
                                             <Box key={ele.name + Date.now()}>
@@ -168,7 +168,7 @@ export default function Exercise({ exerciseCalories }) {
                                         ))}
                                 </Box>
                             )}
-                            <Heading as="h1">All Foods</Heading>
+                            {/* <Heading as="h1">All Foods</Heading> */}
                         </Box>
                     ) : (
                         <Box
