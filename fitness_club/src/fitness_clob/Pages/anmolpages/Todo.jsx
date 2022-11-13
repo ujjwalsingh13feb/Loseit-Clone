@@ -31,7 +31,9 @@ const Todo = () => {
     setTimeout(() => {
       setloading(true);
     }, 2000);
-    let response = await axios.get("https://fitness-club-server.onrender.com/comments");
+    let response = await axios.get(
+      "https://fitness-club-server.onrender.com/comments"
+    );
     let data = await response.data;
     setData(data);
   }
@@ -106,7 +108,9 @@ const Todo = () => {
               <span>
                 <Person_image />
               </span>{" "}
-              <div className={Styles.name}>Anmol Jagota:<span
+              <div className={Styles.name}>
+                Anmol Jagota:
+                <span
                   style={{
                     color: "black",
                     fontSize: "9pt",
@@ -116,7 +120,12 @@ const Todo = () => {
                 >
                   {todos.name}
                 </span>
-              <Box fontSize="10pt" backgroundColor="white" color="grey" mt="10px">
+                <Box
+                  fontSize="10pt"
+                  backgroundColor="white"
+                  color="grey"
+                  mt="10px"
+                >
                   {moment().calendar()}
                   <span
                     fontSize="9pt"
@@ -141,8 +150,6 @@ const Todo = () => {
                 </Box>
               </div>
               {/* <div> */}
-                
-               
               {/* </div> */}
             </div>
           </div>

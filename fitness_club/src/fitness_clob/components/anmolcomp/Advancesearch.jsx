@@ -4,16 +4,20 @@ import axios from "axios";
 import Styles from "../../css/Profile.module.css";
 import Styles1 from "../../css/activity.module.css";
 import { useState } from "react";
-
+import { TiPlusOutline } from "react-icons/ti";
+import { ImCheckmark } from "react-icons/im";
+import data1 from "../../alldata/comment.json";
 const Advancesearch = () => {
   const [data, setData] = useState([]);
+  const [icon, setIcon] = useState(false);
+  const { addfriend } = data1;
+  console.log("i am add friend", addfriend);
   async function getdata() {
     let response = await axios.get("https://hub.dummyapis.com/vj/Kmw8lBF");
     let data1 = await response.data[0].data;
     setData(data1);
   }
-  console.log("kkk", data);
-  return (
+return (
     <>
       <div className={Styles1.flex}>
         <Box>
@@ -22,7 +26,6 @@ const Advancesearch = () => {
             style={{
               fontSize: "12px",
               color: "grey",
-             
             }}
           >
             <Box>Gender</Box>
@@ -35,13 +38,18 @@ const Advancesearch = () => {
             style={{
               fontSize: "12px",
               color: "grey",
-              
+
               marginTop: "40px",
             }}
           >
             <Box>Goal</Box>
             <Stack spacing={3} mt="10px">
-              <Select placeholder="large size" size="lg">
+              <Select
+                placeholder="Any wait"
+                size="lg"
+                color="black"
+                fontSize="15px"
+              >
                 <option value="option1">Maintain</option>
                 <option value="option2">Lose between 1 and 9 pounds</option>
                 <option value="option3">Lose between 5 and 10 pounds</option>
@@ -65,7 +73,7 @@ const Advancesearch = () => {
           >
             <Box>Age</Box>
             <Stack spacing={3} mt="10px">
-              <Select placeholder="Any age" size="lg">
+              <Select placeholder="Any age" size="lg" fontSize="15px">
                 <option value="option1">10 to 15 years</option>
                 <option value="option2">18 to 24 years</option>
                 <option value="option3">28 to 34 years</option>
@@ -82,13 +90,13 @@ const Advancesearch = () => {
             style={{
               fontSize: "12px",
               color: "grey",
-             
+
               marginTop: "40px",
             }}
           >
             <Box>Exercise</Box>
             <Stack spacing={3} mt="10px" display="flex">
-              <Select placeholder="Any Exercise" size="lg">
+              <Select placeholder="Any Exercise" size="lg" fontSize="15px">
                 <option value="option1">10 to 15 years</option>
                 <option value="option2">18 to 24 years</option>
                 <option value="option3">28 to 34 years</option>
@@ -104,11 +112,25 @@ const Advancesearch = () => {
           </Box>
         </Box>
       </div>
-      <Box>
+      <Box ml="30px">
         {data.map((item) => (
-          <Box display="flex" >
-            <Box className={Styles.names}><Img src={item.img}/></Box>
-            <Box className={Styles.names} ml="15px">{item.name}</Box>
+          <Box display="flex" justifyContent="space-between">
+            <Box display="flex">
+              <Box className={Styles.names}>
+                <Img src={item.img} />
+              </Box>
+              <Box className={Styles.names} ml="15px">
+                {item.name}
+              </Box>
+            </Box>
+            <Box display="flex">
+              <Box mt="20px" mr="20px" onClick={() => setIcon(true)}>
+                {icon === false ? <TiPlusOutline /> : <ImCheckmark />}
+              </Box>
+              <span className={Styles.names}>
+                <span>{addfriend.friend}Add Friend</span>
+              </span>
+            </Box>
           </Box>
         ))}
       </Box>

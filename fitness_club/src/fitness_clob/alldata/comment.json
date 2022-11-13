@@ -25,9 +25,29 @@
     {"details":"password"},
     {"details":"Message"},
     {"details":"Phone"},
-    {"details":"Bio"},
+    {"details":"Age"},
     {"details":"Interest"},
     {"details":"Top 5 Foods"},
     {"details":"Top 5 Exercise"}
+  ],
+  "addfriend":[
+    {"id":"1","friend":"Add Friend"},
+    {"id":"2","friend":"Add Friend"},
+    {"id":"3","friend":"Add Friend"},
+    {"id":"4","friend":"Add Friend"},
+    {"id":"5","friend":"Add Friend"},
+    {"id":"6","friend":"Add Friend"},
+    {"id":"7","friend":"Add Friend"},
+    {"id":"8","friend":"Add Friend"},
+    {"id":"9","friend":"Add Friend"},
+    {"id":"10","friend":"Add Friend"},
+    {"id":"11","friend":"Add Friend"},
+    {"id":"12","friend":"Add Friend"},
+    {"id":"13","friend":"Add Friend"},
+    {"id":"14","friend":"Add Friend"},
+    {"id":"15","friend":"Add Friend"},
+    {"id":"16","friend":"Add Friend"},
+    {"id":"17","friend":"Add Friend"}
+
   ]
 }

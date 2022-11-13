@@ -13,18 +13,16 @@ const Sidebar = () => {
   console.log("activa", active);
   console.log("invitation", invitation);
   return (
-    <div style={{ border: "1px solid black", height: "50vw" }}>
+    <div style={{  height: "50vw" ,marginTop:"50px"}}>
       <Box className={Styles.innerbox}>
-        <Box style={{ border: "1px solid black", width: "20%" }}>
+        <Box style={{  width: "20%" }}>
           <Box
             className={Styles.activity}
-            onClick={() => {
-              setActive(!active);
-              setinvitation(!invitation);
-            }}
+            onClick={()=>setActive(true)}
+            style={{ backgroundColor: active ? "#4D4DFF" : null }}
           >
             <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACoUlEQVR42sVUS2gTQRhOqmkb8sK6ze4mm+zO7ibZmQ1RaXuISUGtbZOmSWYLEcQH9uDFgwe9iWehiEWkCB7Ex0kP4kHx4gOvngSLgujBUiJVPIhQFfH1T5hiJKFJvbjwscw//3zzf/9jXK7/9elpZxqwqBPnvY7LxxQl6wWz+98J7eqCbju/GDRcvioIWAbz5q4JTLPYBwgSUvPrQ7WQhp15IPuJSPWNrGYdcBkAeLoiEzMTPmQ7R5FNb8D/mo7pLSBbZoTxxORcX3AwIRu7h2Jm0XC5aps6EqqZMoLDTwDfdJuuwP/7mlyEyw+01NQc2JcRqVwKKlkWac+6hBqh2+HwSxWXrwvK8C6EK4/XCP+ArsQTheN+vxjuKF0n1Vk49CWWHD/h9Q4oOqk8+ouM0Hcyyh8CV1aYYKfiuPU0PWPYtC6pO0vRxNg0kLzlZJ+RVboraaNHwC8KCPHo1m0ft0oqO2LJCSoIVhLkLjRF9lFWcweaIvN024ssyf3hcFpEmN5plgtt80yzSvOqVZqRzOLgRpq7ESkk/zknWgIswnq1sbbpByA9KYoZX1ekZmZGMQi9ycleRbT8bDgyPB7R98zC+gWzq7h0MRCICB0nRsfVvXDgHs/baxmNHgRzBLBlq7ItyiKFy+pSPF/jE9Oe0ExTAySdM2ynziN7CpHt52SNIiBcPQx7X2Geb/NKBwCt02IQ5yyfDpb8VZBzWYyOjMGW1FTRHrjwCm/sT2qicBpeHbPtpIDTDwZ2s4Ry+yA3KTCz/Pi4JDdPx5RqlS+oePq+ZlUexlMFlo7elsIwmWzEQkJqmL0PPKq+ltsJ6fWLmTDrUTmey0vxERus3hY/kHA+lpw8xSX6eF7atYOb77Go+jnaNriHJziwgYfT3YTG9xvU0LksYfIzBAAAAABJRU5ErkJggg==" />
-            <span className={Styles.links}>Activity</span>
+            <span className={Styles.links}  style={{ color: active ? "white" : "#2c475c" }}>Activity</span>
           </Box>
 
           <Box
@@ -58,9 +56,10 @@ const Sidebar = () => {
               <span className={Styles.links}>VIew My Profile</span>
             </Box>
               </Link>
-            <Box className={Styles.activity} onClick={()=>setActive(false)}>
+            <Box className={Styles.activity} onClick={()=>setActive(false)} style={{ backgroundColor: active ? null : "#4D4DFF" }}>
               <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUVJREFUeNrUlLFOAzEMhh0JwQSdkKBsZenGwyCegJknYOUteATehI2RAVgQRRXt1I3E5k9ySeNcL7ewtJJrny/3xX/sOyMi9J8/s19A83yLf1w77+A5mJCLsYGJYxPylpHDOsck10+ZcaDwnh0gyXfmOHjJIJ/r8k4r1MAMS7tLjF0BLkHp/iDQLxDZwkJlxcNdpWTLDVpALuSUldmiYleA0nWjQlHSuJIXY1EbRaAZlpxl0g4YV5vJiGTr9MIU585yPL98JF2+2RR18D252qexGgZiaPsPS1Wx2coem0Nbyew1h/Qopc43gbVEbsTjkuuO0u6uJ5CMdplp9vBxiKE6wUmdInP+fjdVr9nscXmD/Bfe+wX8GhO4oXuyg5+vy/nVERZPKAKniC8Qn8EfY6MVVnvQJ+wb9gPbvL2+/O7PB/ZPgAEAgoeZzX/7aNsAAAAASUVORK5CYII=" />
-              <span className={Styles.links}>Add Friend</span>
+              <span className={Styles.links} style={{ color: active ? "#2c475c" : "white" }}>Add Friend</span>
+              
             </Box>
             <Box style={{ marginTop: "15px" }}>
               Groups
