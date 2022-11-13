@@ -94,6 +94,7 @@ width: 18%;
   margin: 0px 0px 0px 20px;
   width: 70%;
   padding: 6px;
+  border:1px solid grey;
 }
 .color {
   color: #0f6cc4;
